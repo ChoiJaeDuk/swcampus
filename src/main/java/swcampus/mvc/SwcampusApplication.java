@@ -10,3 +10,4 @@ public class SwcampusApplication {
       SpringApplication.run(SwcampusApplication.class, args);
    }
 }
+

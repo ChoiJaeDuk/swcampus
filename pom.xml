@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,7 +30,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- mysql  -->
+		<dependency>
+   			<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>5.1.47</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -56,6 +63,66 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- jsp view를 사용하기 위한 설정 -->
+       <dependency>
+         <groupId>org.apache.tomcat.embed</groupId>
+         <artifactId>tomcat-embed-jasper</artifactId>
+         <version>9.0.46</version><!--$NO-MVN-MAN-VER$ -->
+       </dependency>
+       
+
+       <!-- jsp에서 jstl lib --> 
+       <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
+         <version>1.2</version><!--$NO-MVN-MAN-VER$ -->
+       </dependency> 
+       
+       <!-- Query DSL 설정 -->
+       <dependency>
+         <groupId>com.querydsl</groupId>
+         <artifactId>querydsl-apt</artifactId>
+ <!-- querydsl과 jsp동시 사용시 오류 querydsl-apt내의 org.eclipse.jdt.core.compiler:ecj4,3,1에 
+            대한 종속성을 강제하여 JSP오류 STS 재시작 -->
+         <exclusions>
+            <exclusion>
+               <groupId>org.eclipse.jdt.core.compiler</groupId>
+               <artifactId>ecj</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      
+      <dependency>
+         <groupId>com.querydsl</groupId>
+         <artifactId>querydsl-jpa</artifactId>
+      </dependency>
+      
+      <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+      <dependency>
+          <groupId>com.googlecode.json-simple</groupId>
+          <artifactId>json-simple</artifactId>
+          <version>1.1.1</version>
+      </dependency>
+      
+            <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.5.3</version><!--$NO-MVN-MAN-VER$ -->
+      </dependency>
+      
+      <!-- 파일업로드 -->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>1.3.2</version>
+      </dependency>
+      <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.3.1</version>
+      </dependency>
 	</dependencies>
 
 	<build>
