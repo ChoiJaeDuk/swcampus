@@ -18,7 +18,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @Builder
-public class test {
+
+public class Test {
 	@Id
 	@NonNull
 	String test;
