@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +31,8 @@ import lombok.Setter;
 public class Notice {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_noticeNo_seq")
-	@SequenceGenerator(name = "notice_noticeNo_seq", allocationSize = 1, sequenceName = "notice_noticeNo_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "noticeNo_seq")
+	@SequenceGenerator(name = "noticeNo_seq", allocationSize = 1, sequenceName = "noticeNo_seq")
 	private Long noticeNo;
 	
 	@ManyToOne
@@ -47,6 +50,12 @@ public class Notice {
 	
 	@Column(nullable = false)
 	private int noticeViewCount;
+	
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryNo")
+	private NoticeImg noticeImg;
 
 
 }

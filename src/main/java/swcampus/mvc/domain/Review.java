@@ -43,7 +43,9 @@ public class Review {
 	
 	@Column(nullable = false)
 	private boolean reviewCheck;
-	
+
+	@Column(nullable = false)
+	private String reviewImg;
 
 }
 

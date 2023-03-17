@@ -26,7 +26,7 @@ public class Reply {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "community_no")
-	private Community community;
+	private Lecture lecture;
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

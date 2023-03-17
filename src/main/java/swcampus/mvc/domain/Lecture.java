@@ -80,6 +80,8 @@ public class Lecture {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoryNo")
-	private Category Category;
+	private Category category;
+	
+	
 }
 
