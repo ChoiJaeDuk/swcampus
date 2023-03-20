@@ -1,5 +1,6 @@
 package swcampus.mvc.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,12 +11,29 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Like {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Builder
+@RequiredArgsConstructor
+@ToString
+public class Likes {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "likeNo_seq")
-	@SequenceGenerator(name = "likeNo_seq", allocationSize = 1, sequenceName = "likeNo_seq")
-	private Long likeNo;	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NonNull
+	private Long likesNo;	
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +42,6 @@ public class Like {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_no")
 	private User user;
 }

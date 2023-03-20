@@ -30,8 +30,7 @@ import lombok.ToString;
 @ToString
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_no_seq")
-	@SequenceGenerator(name = "user_no_seq", allocationSize = 1, sequenceName = "user_no_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NonNull
 	private Long userNo;
 	

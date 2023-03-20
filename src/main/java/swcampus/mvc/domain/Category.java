@@ -8,24 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@NoArgsConstructor
 @Setter
+@Getter
+@Builder
+@RequiredArgsConstructor
+@ToString
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_no_seq")
-	@SequenceGenerator(name = "category_no_seq", allocationSize = 1, sequenceName = "category_no_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NonNull
-	
-	private String categoryNo;
+	private Long categoryNo;
 	
 	@Column(nullable = false)
 	private String categoryName;

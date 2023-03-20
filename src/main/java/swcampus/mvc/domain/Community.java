@@ -1,6 +1,7 @@
 package swcampus.mvc.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,35 +26,43 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 @Builder
-public class Notice {
-
+@RequiredArgsConstructor
+@ToString
+public class Community {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NonNull
-	private Long noticeNo;
+	private Long communityNo;
 	
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_no")
 	private User user;
 	
 	@Column(nullable = false)
-	private String noticeTitle;
-	
-	@Lob
-	private String noticeContent;
-
-	@CreationTimestamp
-	private LocalDate notieEditDate;
+	private String communityTitle;
 	
 	@Column(nullable = false)
-	private int noticeViewCount;
+	@Lob
+	private String communityContent;
+	
+	@CreationTimestamp
+	private LocalDateTime communityRegDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm")
+	private LocalDateTime communityEditDate;
+	
+	@ColumnDefault("0")
+	private int communityCount;
 	
 }

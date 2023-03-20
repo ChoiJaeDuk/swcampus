@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -40,8 +41,7 @@ import lombok.ToString;
 public class Lecture {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lecture_no_seq")
-	@SequenceGenerator(name = "lecture_no_seq", allocationSize = 1, sequenceName = "lecture_no_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NonNull
 	private Long lectureNo;
 	
@@ -65,6 +65,9 @@ public class Lecture {
 	@Column(nullable = false)
 	private String lectureTeacher;
 	
+	@Lob
+	private String lecture_classDetail;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime lectureStartDate;
 	
@@ -79,7 +82,7 @@ public class Lecture {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "categoryNo")
+	@JoinColumn(name = "category_no")
 	private Category category;
 	
 	

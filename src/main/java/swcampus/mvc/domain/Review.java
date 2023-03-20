@@ -3,6 +3,7 @@ package swcampus.mvc.domain;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +16,28 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Builder
+@RequiredArgsConstructor
+@ToString
 public class Review {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviewNo_seq")
-	@SequenceGenerator(name = "reviewNo_seq", allocationSize = 1, sequenceName = "reviewNo_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NonNull
 	private Long reviewNo;	
 
 	@JsonIgnore
