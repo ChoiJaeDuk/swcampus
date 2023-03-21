@@ -112,11 +112,7 @@ button[type="submit"] {
 	font-size: 20px;
 	line-height: 29px;
 }
-Regenerate
 
- 
-
-response
 </style>
 </head>
 <body>

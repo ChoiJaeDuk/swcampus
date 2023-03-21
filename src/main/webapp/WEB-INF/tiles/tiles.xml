@@ -17,4 +17,7 @@
 	<definition name="/main" extends="layoutBanner">
 		<put-attribute name="content" value="/WEB-INF/views/main.jsp"/>
 	</definition> 
+	<definition name="details/**" extends="layoutBanner">
+		<put-attribute name="content" value="/WEB-INF/views/details/{1}.jsp"/>
+	</definition> 
 </tiles-definitions>
