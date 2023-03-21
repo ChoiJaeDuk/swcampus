@@ -65,4 +65,7 @@ public class Community {
 	@ColumnDefault("0")
 	private int communityCount;
 	
+	@Column(nullable = false)
+	private String communityCategory;
+	
 }
