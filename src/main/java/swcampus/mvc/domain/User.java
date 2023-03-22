@@ -22,7 +22,6 @@ import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Builder
@@ -31,7 +30,6 @@ import lombok.ToString;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long userNo;
 	
 	@Column(nullable = false)
