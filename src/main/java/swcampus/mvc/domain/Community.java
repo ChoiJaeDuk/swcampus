@@ -32,7 +32,6 @@ import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Builder
@@ -41,7 +40,6 @@ import lombok.ToString;
 public class Community {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long communityNo;
 	
 	@JsonIgnore
