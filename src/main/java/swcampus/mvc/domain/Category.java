@@ -18,7 +18,6 @@ import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Builder
@@ -28,7 +27,6 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long categoryNo;
 	
 	@Column(nullable = false)

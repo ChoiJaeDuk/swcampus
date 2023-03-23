@@ -32,7 +32,6 @@ import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Builder
@@ -42,7 +41,6 @@ public class Lecture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long lectureNo;
 	
 	@JsonIgnore

@@ -27,7 +27,6 @@ import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Builder
@@ -37,7 +36,6 @@ public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long reviewNo;	
 
 	@JsonIgnore
