@@ -47,7 +47,7 @@ public class Lecture {
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "users_no")
+	@JoinColumn(name = "user_no")
 	private User user;
 	
 	@Column(nullable = false)
