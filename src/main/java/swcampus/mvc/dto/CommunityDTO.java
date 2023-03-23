@@ -2,17 +2,25 @@ package swcampus.mvc.dto;
 
 import java.time.LocalDateTime;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration.AccessLevel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import swcampus.mvc.domain.Community;
 import swcampus.mvc.domain.User;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class CommunityDTO {
-	
+    private static ModelMapper modelMapper = new ModelMapper();
+
 	private Long userNo;
 	
 	private String communityTitle;
@@ -23,14 +31,16 @@ public class CommunityDTO {
 	
 	private String communityCategory;
 	
-	public Community toEntity(User user) {
-		return Community.builder()
-				.user(user)
-				.communityTitle(communityTitle)
-				.communityContent(communityContent)
-				.communityEditDate(communityEditDate)
-				.communityCategory(communityCategory)
-				.build();
-	}
+	
+	  
+	  
+	
+	//public Community toEntity() {
+	//	modelMapper.getConfiguration()
+	//	.setFieldAccessLevel(AccessLevel.PRIVATE)
+	//	.setFieldMatchingEnabled(true);
+	//	return modelMapper.map(this, Community.class);
+	// }
+	
 	
 }

@@ -17,8 +17,9 @@ public class CommunityController {
 	private final CommunityService communityService;
 	
 	@RequestMapping("/community/list")
-	public void commList(String category){
-		//List<CommunityResponseDTO> list=communityService.communityList(category);
+	public List<CommunityResponseDTO> commList(String category){
+		List<CommunityResponseDTO> list=communityService.communityList(category);
+		 return list;
 		 
 	}
 	

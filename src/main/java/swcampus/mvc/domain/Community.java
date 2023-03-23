@@ -29,14 +29,15 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import swcampus.mvc.dto.CommunityResponseDTO;
 
 @Entity
 @AllArgsConstructor
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Community {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,5 +66,7 @@ public class Community {
 	
 	@Column(nullable = false)
 	private String communityCategory;
+	
+	
 	
 }

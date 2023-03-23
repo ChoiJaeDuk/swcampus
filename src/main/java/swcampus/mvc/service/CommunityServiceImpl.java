@@ -1,6 +1,7 @@
 package swcampus.mvc.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,24 +12,34 @@ import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.CommunityDTO;
 import swcampus.mvc.dto.CommunityResponseDTO;
 import swcampus.mvc.repository.CommunityRepository;
+import swcampus.mvc.repository.UserRepository;
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 	
 	private final CommunityRepository communityRepository ; 
+	private final UserRepository userRep;
 	
 	
 	@Override
 	public List<CommunityResponseDTO> communityList(String communityCategory) {
-		//List<CommunityResponseDTO>
-		//communityRepository.findByCommunityCategory(communityCategory);
-		return null; 
+		
+		List<Community> dblist= communityRepository.findByCommunityCategory(communityCategory);
+		System.out.println("컨트롤러에서 "+dblist);
+		List<CommunityResponseDTO> l= dblist.stream()
+				.map(c->toDTO(c))
+				.collect(Collectors.toList());
+		System.out.println("컨트롤러에서 "+l);
+
+		return  l;
 	}
 
 	@Override
 	public void insertCommunity(CommunityDTO community) {
-		Community comEntity =community.toEntity(new User (community.getUserNo()));
+		User dbUser=userRep.findById(community.getUserNo()).orElse(null);
+		Community comEntity =toEntity(community,dbUser);
+		
 		communityRepository.save(comEntity);
 	}
 
