@@ -29,4 +29,15 @@ public class CommunityController {
 		return "redirect:/community/list";
 				
 	}
+	
+	@RequestMapping("/community/update")
+	public void update(CommunityDTO communityDTO){
+		communityService.updateCommunity(communityDTO);
+		System.out.println("컨트롤러 "+communityDTO);
+	}
+	
+	@RequestMapping("/community/delete")
+	public void delete(Long commNo){
+		communityService.deleteCommunity(commNo);
+	}
 }

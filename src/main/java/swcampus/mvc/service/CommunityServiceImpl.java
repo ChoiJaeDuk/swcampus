@@ -26,18 +26,15 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<CommunityResponseDTO> communityList(String communityCategory) {
 		
 		List<Community> dblist= communityRepository.findByCommunityCategory(communityCategory);
-		System.out.println("컨트롤러에서 "+dblist);
 		List<CommunityResponseDTO> l= dblist.stream()
 				.map(c->toDTO(c))
 				.collect(Collectors.toList());
-		System.out.println("컨트롤러에서 "+l);
-
 		return  l;
 	}
 
 	@Override
 	public void insertCommunity(CommunityDTO community) {
-		User dbUser=userRep.findById(community.getUserNo()).orElse(null);
+		User dbUser=userRep.getReferenceById(community.getUserNo());
 		Community comEntity =toEntity(community,dbUser);
 		
 		communityRepository.save(comEntity);
@@ -53,9 +50,11 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public void updateCommunity(Community community) {
-		// TODO Auto-generated method stub
-
+	public void updateCommunity(CommunityDTO community) {
+		Community dbcommunity = communityRepository.findById(community.getCommunityNo()).get();
+		dbcommunity.setCommunityContent(community.getCommunityContent());
+		dbcommunity.setCommunityTitle(community.getCommunityTitle());
+		dbcommunity.setCommunityEditDate(community.getCommunityEditDate());
 	}
 
 	@Override
