@@ -35,7 +35,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 @ToString
 public class Lecture {
 	
@@ -52,10 +51,10 @@ public class Lecture {
 	private String lectureAgency;
 	
 	@Column(nullable = false)
-	private String lectureTarget;
+	private String lectureTarget;//취업,재직
 	
 	@Column(nullable = false)
-	private String lectureMethod;
+	private String lectureMethod;//온오프
 	
 	@Column(nullable = false)
 	private String lectureTitle;
@@ -81,8 +80,7 @@ public class Lecture {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_no")
-	private Category category;
+	private Category category;//be,fe,ai...
 	
 	
 }
-
