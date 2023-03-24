@@ -27,7 +27,7 @@ public interface CommunityService {
 	/**
 	 * 게시글 수정
 	 * */
-	void updateCommunity(Community community);
+	void updateCommunity(CommunityDTO community);
 	/**
 	 * 게시글 삭제
 	 * */

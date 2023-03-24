@@ -33,13 +33,12 @@ public class test {
 	private CommunityController commCon;
 	
 	
-	// @Test 
-	// void insert() {
-	//	 CommunityDTO dto = new CommunityDTO(3L, "제목","",LocalDateTime.now(),"문의사항");
-	//	 for (int i=0; i<=3; i++) { 
-	//		 commCon.insert(dto); 
-	//   		} 
-	//  }
+	/*
+	 * @Test void insert() {
+	 * 
+	 * for (int i=0; i<=3; i++) { CommunityDTO dto = new CommunityDTO(null,1L,
+	 * "제목"+i,"테스트"+i,LocalDateTime.now(),"공지사"); commCon.insert(dto); } }
+	 */
 	 
 	@ParameterizedTest
 	@ValueSource(strings ="코딩이야기")
@@ -48,4 +47,15 @@ public class test {
 		System.out.println("제이유닛에서 리스 "+dblist.toString());
 	}
 	
+	@Test
+	void up() {
+		CommunityDTO dto = new CommunityDTO(8L, 3L, "수정 다시 !!", "수정", LocalDateTime.now(), "코딩이야기",LocalDateTime.now());
+		commCon.update(dto);
+	}
+	
+	@ParameterizedTest
+	@ValueSource(longs = 14L)
+	void de(Long commNo){
+		commCon.delete(commNo);
+	}
 }
