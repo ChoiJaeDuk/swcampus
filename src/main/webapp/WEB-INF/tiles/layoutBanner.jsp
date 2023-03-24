@@ -185,9 +185,32 @@ s
 .container-wapper{
 	width: 100%;
 }
+.pagination {
+  width:750px;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #333;
+  background-color: #EFF5FF;
+}
+
+.pagination a.active,
+.pagination a:hover {
+  background-color: #2d65f2;
+  color: #fff;
+}
 </style>
 </head>
 <body>
+
 	<script type="text/javascript">
 
 $(function(){
