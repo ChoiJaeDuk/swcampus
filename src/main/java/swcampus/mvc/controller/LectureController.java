@@ -41,10 +41,10 @@ public class LectureController {
      * 상세보기
      * 
      */
-    @RequestMapping("/lecture/??")
+    @RequestMapping("/lecture/select/{lectureNo}")
 	public void selectLec(Long lectureNo) {
     	LectureResponseDTO dto =lectureService.selectByLectureNo(lectureNo);
-    	
+    	System.out.println(dto);
  	}
 	/**
 	 * 강의 수정하기
@@ -79,12 +79,12 @@ public class LectureController {
 	
     /**
      *카테고리별 강의 전체조회
-     */
+    
 	@RequestMapping("/lecture/list")
 	public List<LectureResponseDTO> LectureListByCa(){
 		
 		 return null;
 	}
-	
+	 */
 
 }// Class LectureController 끝
