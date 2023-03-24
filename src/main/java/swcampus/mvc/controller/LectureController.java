@@ -80,11 +80,11 @@ public class LectureController {
     /**
      *카테고리별 강의 전체조회
      */
-	@RequestMapping("/lecture/list")
-	public List<LectureResponseDTO> LectureListByCa(){
-		
-		 return null;
-	}
+//	@RequestMapping("/lecture/list")
+//	public List<LectureResponseDTO> LectureListByCa(){
+//		
+//		 return null;
+//	}
 	
 
 

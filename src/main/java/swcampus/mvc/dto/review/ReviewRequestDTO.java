@@ -1,8 +1,12 @@
 package swcampus.mvc.dto.review;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
+@Builder
 public class ReviewRequestDTO {
 	private Long reviewNo;
 	
