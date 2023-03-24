@@ -22,13 +22,11 @@ import lombok.ToString;
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 @ToString
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long categoryNo;
 	
 	@Column(nullable = false)

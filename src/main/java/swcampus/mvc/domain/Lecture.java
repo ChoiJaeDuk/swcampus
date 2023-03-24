@@ -36,18 +36,16 @@ import lombok.ToString;
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 @ToString
 public class Lecture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long lectureNo;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "users_no")
+	@JoinColumn(name = "user_no")
 	private User user;
 	
 	@Column(nullable = false)
