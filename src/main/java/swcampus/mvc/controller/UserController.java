@@ -15,6 +15,11 @@ public class UserController {
 	
 	@RequestMapping("/join")
 	public void userJoin(UserRequestDTO userDTO) {
+		userService.userJoin(userDTO);
+	}
+	
+	@RequestMapping("userDelete")
+	public void userDelete(Long userNo) {
 		
 	}
 }

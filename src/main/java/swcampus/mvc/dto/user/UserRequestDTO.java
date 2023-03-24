@@ -1,16 +1,21 @@
 package swcampus.mvc.dto.user;
 
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import swcampus.mvc.domain.Role;
 import swcampus.mvc.domain.User;
 
-@Getter
-@Setter
 @ToString
-@NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor
 public class UserRequestDTO {
 	private Long userNo;
 	
@@ -20,22 +25,15 @@ public class UserRequestDTO {
 	
 	private String userName;
 	
+	private String userPhone;
+	
 	private String userPassword;
+	
+	private Role userRole;
 	
 	private String userCompany;
 	
 	private String userJob;
-	
-	
-	public User toEntity() {
-		User user = User.builder()
-				.userId(userId)
-				.userEmail(userEmail)
-				.userName(userName)
-				.userPassword(userPassword)
-				.userCompany(userCompany)
-				.userJob(userJob).build();
-		return user;
-	}
+
 
 }

@@ -24,6 +24,7 @@ Roboto
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+s
 * {
 	margin: 0px;
 }
@@ -179,7 +180,7 @@ Roboto
 }
 .container{
 	width: 1200px; 
-	margin: 120px auto 0px;
+	margin: 0px auto;
 }
 .container-wapper{
 	width: 100%;

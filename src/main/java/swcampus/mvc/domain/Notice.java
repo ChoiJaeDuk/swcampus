@@ -34,7 +34,6 @@ public class Notice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Long noticeNo;
 	
 	@ManyToOne
