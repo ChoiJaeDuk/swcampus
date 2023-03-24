@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import swcampus.mvc.domain.Lecture;
 import swcampus.mvc.domain.Role;
 import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.page.PageRequestDTO;
@@ -38,17 +37,34 @@ public class UserServiceImpl implements UserService {
 		user.setUserPassword(encoderPwd);
 		userRep.save(user);
 	}
+	
+	@Override
+	public void userUpdate(UserRequestDTO userDTO) {
+		User user =  toEntity(userDTO);
+		String encoderPwd = bCryptPasswordEncoder.encode(userDTO.getUserPassword());
+		user.setUserNo(userDTO.getUserNo());
+		user.setUserRole(Role.ROLE_USER);
+		user.setUserPassword(encoderPwd);
+		userRep.save(user);
+	}
 
 	@Override
-	public void userDelete(Long userNo) {
-		
-		
+	public void userDelete(Long userNo) {		
 		userRep.deleteById(userNo);
 	}
 	
-	
 	@Override
-	public PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO) {
+	public UserResponseDTO userSelectById(Long userNo) {
+		
+		User user = userRep.findById(userNo).orElse(null);	
+		
+		return toDTO(user);
+	}
+	
+	
+	//Sorting 처리해야함
+	@Override
+	public PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO, String sort) {
 		Pageable pageable = requestDTO.getPageable(Sort.by("userNo"));
 		
 		Page<User> result = userRep.findAll(pageable);
@@ -57,4 +73,6 @@ public class UserServiceImpl implements UserService {
 		
 		return new PageResponseDTO<>(result, fn);
 	}
+
+	
 }

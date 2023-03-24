@@ -54,7 +54,7 @@ public class UserTest {
 	void selectUserList() {
 		PageRequestDTO pageRequestDTO = new PageRequestDTO(1,5);
 		
-		PageResponseDTO<UserResponseDTO, User> list = userService.selectUserList(pageRequestDTO);
+		PageResponseDTO<UserResponseDTO, User> list = userService.selectUserList(pageRequestDTO,"userNo");
 		
 		for(UserResponseDTO u:list.getDtoList()) {
 			System.out.println(u);

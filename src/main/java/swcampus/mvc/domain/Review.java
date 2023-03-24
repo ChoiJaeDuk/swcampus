@@ -55,7 +55,7 @@ public class Review {
 	private double reviewStar;
 	
 	@Column(nullable = false)
-	private String replyContent;
+	private String reviewContent;
 	
 	@Column(nullable = false)
 	private boolean reviewCheck;

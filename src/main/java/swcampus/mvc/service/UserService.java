@@ -44,13 +44,23 @@ public interface UserService {
 	 */
 	void userJoin(UserRequestDTO userDTO);
 	
+	/**
+	 * 회원정보 수정
+	 * @param userDTO
+	 */
+	void userUpdate(UserRequestDTO userDTO);
 	
 	/**
 	 * 회원번호를 전달받아 회원을 삭제한다.(회원탈퇴)
 	 * */
 	void userDelete(Long userNo);
 	
-	
+	/**
+	 * 회원번호에 해당하는 회원정보 반환
+	 * @param userNo
+	 * @return
+	 */
+	UserResponseDTO userSelectById(Long userNo);
 	
 	
 	
@@ -58,7 +68,7 @@ public interface UserService {
 	 * 회원목록 조회
 	 * @return
 	 */
-	PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO);
+	PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO, String sort);
 	
 	
 	
