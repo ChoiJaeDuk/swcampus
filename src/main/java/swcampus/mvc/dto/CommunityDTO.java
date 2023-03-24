@@ -20,6 +20,8 @@ import swcampus.mvc.domain.User;
 @Setter
 public class CommunityDTO {
     private static ModelMapper modelMapper = new ModelMapper();
+    
+    private Long communityNo;
 
 	private Long userNo;
 	
@@ -31,9 +33,7 @@ public class CommunityDTO {
 	
 	private String communityCategory;
 	
-	
-	  
-	  
+	private LocalDateTime communityRegDate;	  
 	
 	//public Community toEntity() {
 	//	modelMapper.getConfiguration()
