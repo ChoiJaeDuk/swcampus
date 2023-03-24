@@ -35,7 +35,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 @ToString
 public class Lecture {
 	

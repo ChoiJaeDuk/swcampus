@@ -28,6 +28,7 @@ import swcampus.mvc.dto.user.UserResponseDTO;
 @Getter
 @Builder
 @ToString
+@NoArgsConstructor
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
