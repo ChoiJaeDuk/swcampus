@@ -44,8 +44,9 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public LectureResponseDTO selectByLectureNo(Long LectureNo) {
 		Lecture dblec = lectureRep.getReferenceById(LectureNo);
-		
+		System.out.println(dblec);
 		LectureResponseDTO dto = toDto(dblec);
+		System.out.println(dto);
 		return dto;
 	}
 	
