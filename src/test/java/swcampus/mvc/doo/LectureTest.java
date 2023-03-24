@@ -1,10 +1,12 @@
-package doyoonRTest;
+package swcampus.mvc.doo;
 
 import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
@@ -33,9 +35,10 @@ public class LectureTest {
 		}
 	}
 	
-	@Test
-	private seleLec(Long aaa) {
-		lectureCon.selectLec(3L);
+	@ParameterizedTest
+	@ValueSource(longs = 4L)
+	 void selectLec(Long lectureNo) {
+		lectureCon.selectLec(lectureNo);
 	}
 	
 
