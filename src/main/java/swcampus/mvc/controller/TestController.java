@@ -13,4 +13,8 @@ public class TestController {
 	   }
 	   @RequestMapping("/details/{url}")
 	   public void url() {}
+	   @RequestMapping("/board/{url}")
+	   public void board() {}
+	   @RequestMapping("/utill/{url}")
+	   public void utill() {}
 }

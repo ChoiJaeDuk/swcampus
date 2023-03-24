@@ -116,6 +116,9 @@ Roboto
 }
 
 /*top ^*/
+.top-wrapper{
+  z-index: 9999;
+}
 </style>
 
 </head>
@@ -157,7 +160,7 @@ Roboto
 		</div>
 	</div>
 	<div class="top-wrapper"
-		style="width: 100%; height: 60px; background-color: #2D65F2">
+		style="width: 100%; height: 60px; background-color: #2D65F2; position: absolute;">
 		<div class="top-contaner"
 			style="width: 1200px; align-content: center; margin: 0 auto; text-align: center;">
 
