@@ -11,6 +11,8 @@ import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.page.PageResponseDTO;
 import swcampus.mvc.dto.review.ReviewRequestDTO;
 import swcampus.mvc.dto.review.ReviewResponseDTO;
+import swcampus.mvc.repository.LectureRepository;
+import swcampus.mvc.repository.ReviewRepository;
 import swcampus.mvc.repository.UserRepository;
 
 @Service
@@ -19,18 +21,21 @@ import swcampus.mvc.repository.UserRepository;
 public class ReviewServiceImpl implements ReviewService {
 	
 	private final UserRepository userRep;
+	private final LectureRepository lectureRep;
+	private final ReviewRepository reviewRep;
 
 	@Override
 	public void reviewInsert(ReviewRequestDTO reviewDTO) {
+		Lecture lecture = lectureRep.getReferenceById(reviewDTO.getLectureNo());
 		User user = userRep.getReferenceById(reviewDTO.getUserNo());
-		Review review = toEntity(reviewDTO, null, user);
-
+		Review review = toEntity(reviewDTO, lecture, user);
+		
+		reviewRep.save(review);
 	}
 
 	@Override
 	public void reviewDelete(Long reviewNo) {
-		// TODO Auto-generated method stub
-
+		reviewRep.deleteById(reviewNo);
 	}
 
 	@Override
@@ -40,8 +45,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void reviewConfirm(boolean reviewCheck) {
-		// TODO Auto-generated method stub
+	public void reviewConfirm(Long reviewNo) {
+		Review review = reviewRep.findById(reviewNo).get();
+		review.setReviewCheck(true);
 
 	}
 

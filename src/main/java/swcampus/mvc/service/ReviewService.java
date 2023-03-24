@@ -33,6 +33,6 @@ public interface ReviewService {
 	
 	PageResponseDTO<ReviewResponseDTO, Review> reviewSelectByLectureId(Long lectureNo);
 	
-	void reviewConfirm(boolean reviewCheck);
+	void reviewConfirm(Long reviewNo);
 	
 }
