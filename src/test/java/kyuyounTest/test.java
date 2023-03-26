@@ -14,16 +14,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 
+import lombok.RequiredArgsConstructor;
 import swcampus.mvc.SwcampusApplication;
 import swcampus.mvc.controller.CommunityController;
+import swcampus.mvc.controller.ReplyController;
 import swcampus.mvc.dto.CommunityDTO;
 import swcampus.mvc.dto.CommunityResponseDTO;
+import swcampus.mvc.dto.ReplyDTO;
 import swcampus.mvc.repository.CommunityRepository;
+import swcampus.mvc.service.ReplyService;
 
 @SpringBootTest
 @Commit
 @Transactional
 @ContextConfiguration(classes = SwcampusApplication.class)
+@RequiredArgsConstructor
 public class test {
 
 	@Autowired
@@ -31,6 +36,9 @@ public class test {
 	
 	@Autowired
 	private CommunityController commCon;
+	
+	@Autowired
+	private ReplyController reCon; 
 	
 	
 	/*
@@ -57,5 +65,19 @@ public class test {
 	@ValueSource(longs = 14L)
 	void de(Long commNo){
 		commCon.delete(commNo);
+	}
+	
+	@Test
+	void insertReply(){
+		for(int i = 0;i<=2;i++) {
+		ReplyDTO reDTO = new ReplyDTO(9L,1L , "댓글 테스트"+i);
+		reCon.insertReply(reDTO);
+		}
+	}
+	
+	@ParameterizedTest
+	@ValueSource(longs = 8L)
+	void deReply(Long commNo){
+		reCon.deleteReply(commNo);
 	}
 }

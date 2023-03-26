@@ -52,6 +52,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void updateCommunity(CommunityDTO community) {
 		Community dbcommunity = communityRepository.findById(community.getCommunityNo()).get();
+		//Community dbcommunity = communityRepository.getReferenceById(community.getCommunityNo());
 		dbcommunity.setCommunityContent(community.getCommunityContent());
 		dbcommunity.setCommunityTitle(community.getCommunityTitle());
 		dbcommunity.setCommunityEditDate(community.getCommunityEditDate());
