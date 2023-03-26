@@ -38,8 +38,11 @@ public class LectureController {
         return "";
     }
 
+    /**
+     * 강의 상세조회
+     * @param lectureNo
+     */
     @RequestMapping("/lecture/select/{lectureNo}")
-
 	public void selectLec(Long lectureNo) {
     	LectureResponseDTO dto =lectureService.selectByLectureNo(lectureNo);
     	System.out.println(dto);
@@ -47,21 +50,19 @@ public class LectureController {
 /**
 	 * 강의 수정하기
 	 */
-	/*
-	 * @RequestMapping("/lectureUpdate") public ModelAndView lectureUpdate(Lecture
-	 * lecture) {
-	 * 
-	 * Lecture dblecture=lectureService.updateLecture(lecture);
-	 * 
-	 * 
-	 * return new ModelAndView("question/noticeDetail", "noticeDetail",dblecture); }
-	 */
+	  @RequestMapping("/lecture/update") 
+	  public void lectureUpdate(LectureDTO lectureDTO) {
+	 
+	  lectureService.updateLecture(lectureDTO);
+	  
+	  }
+	 
 	
 	/**
 	 * 게시글 삭제하기
 	 * */
-    @RequestMapping("")
-	public String delete(Long LectureNo) {
+    @RequestMapping("/lecture/delete")
+	public String deleteLec(Long LectureNo) {
 		lectureService.deleteByLectureNo(LectureNo);
 		return "";
 	}
@@ -79,7 +80,7 @@ public class LectureController {
     /**
      *카테고리별 강의 전체조회
     
-	@RequestMapping("/lecture/list")
+	@RequestMapping("/lecture/category")
 	public List<LectureResponseDTO> LectureListByCa(){
 		
 		 return null;

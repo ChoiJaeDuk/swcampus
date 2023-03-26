@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter		
 public class LectureDTO {
 	
+	private Long LectureNo;
+	
 	private Long userNo;
 	
 	private String lectureAgency;

@@ -38,7 +38,7 @@ public interface LectureService {
 	     * @param 타겟, 메소드(온.오프),카테고리(java.cloud 등), 제목, 강사, 
 	     * 		  강의상세보기, 강의시작일, 강의종료일,강의url
 	     */
-		void updateLecture(Lecture lecture);
+		void updateLecture(LectureDTO lectureDto);
 
 		
 		

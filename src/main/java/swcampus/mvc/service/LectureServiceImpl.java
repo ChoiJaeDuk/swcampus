@@ -64,14 +64,21 @@ public class LectureServiceImpl implements LectureService {
 
 	@Override
 	public void deleteByLectureNo(Long LectureNo) {
-		// TODO Auto-generated method stub
+		lectureRep.deleteById(LectureNo);
 		
 	}
 
 	@Override
-	public void updateLecture(Lecture lecture) {
-		// TODO Auto-generated method stub
+	public void updateLecture(LectureDTO lectureDto) {
+		Lecture dbLecture = lectureRep.getReferenceById(lectureDto.getLectureNo());
+		Category dbcate = cateRep.getReferenceById(lectureDto.getCategoryNo());
 		
+		dbLecture.setLectureAgency(lectureDto.getLectureAgency());
+		dbLecture.setLectureTarget(lectureDto.getLectureTarget());
+		dbLecture.setLectureMethod(lectureDto.getLectureMethod());
+		dbLecture.setCategory(lectureDto.getCategoryNo());
+		dbLecture.setLectureTitle(null);
+		dbLecture.setLectureTeacher(null);
 	}
 	
 

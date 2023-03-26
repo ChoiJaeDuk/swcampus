@@ -55,8 +55,7 @@ public class CommunityServiceImpl implements CommunityService {
 		dbcommunity.setCommunityContent(community.getCommunityContent());
 		dbcommunity.setCommunityTitle(community.getCommunityTitle());
 		dbcommunity.setCommunityEditDate(community.getCommunityEditDate());
-	}
-
+	};
 	@Override
 	public void deleteCommunity(Long CommunityNo) {
 		communityRepository.deleteById(CommunityNo);

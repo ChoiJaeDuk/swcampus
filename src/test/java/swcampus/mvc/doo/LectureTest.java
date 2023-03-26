@@ -41,6 +41,15 @@ public class LectureTest {
 		lectureCon.selectLec(lectureNo);
 	}
 	
+	@ParameterizedTest
+	@ValueSource(longs = 6L)
+	 void deleteLec(Long lectureNo) {
+		lectureCon.deleteLec(lectureNo);
+	}
+	 
+	 
+	 
+	
 
 	
 }
