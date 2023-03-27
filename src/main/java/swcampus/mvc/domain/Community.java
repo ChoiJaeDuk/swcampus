@@ -1,8 +1,9 @@
 package swcampus.mvc.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,11 +25,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import swcampus.mvc.dto.CommunityResponseDTO;
 
 @Entity
 @AllArgsConstructor
@@ -67,6 +64,6 @@ public class Community {
 	@Column(nullable = false)
 	private String communityCategory;
 	
-	
-	
+	@OneToMany(mappedBy = "community", cascade = CascadeType.ALL)
+	private List<Reply> replyList;
 }

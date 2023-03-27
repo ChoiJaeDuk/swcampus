@@ -70,7 +70,7 @@ public class test {
 	@Test
 	void insertReply(){
 		for(int i = 0;i<=2;i++) {
-		ReplyDTO reDTO = new ReplyDTO(9L,1L , "댓글 테스트"+i);
+		ReplyDTO reDTO = new ReplyDTO(6L,1L , "댓글 테스트"+i);
 		reCon.insertReply(reDTO);
 		}
 	}
@@ -80,4 +80,10 @@ public class test {
 	void deReply(Long commNo){
 		reCon.deleteReply(commNo);
 	}
+	@ParameterizedTest
+	@ValueSource(longs = 6L)
+	void reply(Long commNo){
+		commCon.read(commNo );
+	}
+	
 }
