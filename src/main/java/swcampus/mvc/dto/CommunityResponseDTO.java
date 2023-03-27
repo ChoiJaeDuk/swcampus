@@ -1,16 +1,17 @@
 package swcampus.mvc.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import swcampus.mvc.domain.User;
 
 @Data
 @Builder
 @AllArgsConstructor
 public class CommunityResponseDTO {
+	
 	private String userName;
 	
 	private String communityTitle;
@@ -21,5 +22,6 @@ public class CommunityResponseDTO {
 	
 	private String communityCategory;
 	
+	private List<ReplyResponseDTO> replyList;
 	
 }
