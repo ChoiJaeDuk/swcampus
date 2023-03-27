@@ -40,7 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public PageResponseDTO<ReviewResponseDTO, Review> reviewSelectByLectureId(Long lectureNo) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -48,7 +48,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public void reviewConfirm(Long reviewNo) {
 		Review review = reviewRep.findById(reviewNo).get();
 		review.setReviewCheck(true);
-
 	}
 
 }
