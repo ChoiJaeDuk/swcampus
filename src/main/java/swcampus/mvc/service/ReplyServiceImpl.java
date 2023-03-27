@@ -36,7 +36,7 @@ public class ReplyServiceImpl implements ReplyService {
 		Reply reEntity=toEntity(replyDto, dbComm, dbUser);
 		
 		
-		communityRepository.countUpdate(replyDto.getCommunityNo());
+		//communityRepository.countUpdate(replyDto.getCommunityNo());
 		replyRepository.save(reEntity);
 	}
 

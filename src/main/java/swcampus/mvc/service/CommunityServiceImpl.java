@@ -41,12 +41,19 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public Community selectByCommunityId(Long communityNo,Boolean state) {
+	public CommunityResponseDTO selectByCommunityId(Long communityNo,Boolean state) {
 		if(state) {
 			communityRepository.countUpdate(communityNo);
 		}
 		Community dbCommunity=communityRepository.findById(communityNo).orElse(null);
-		return dbCommunity;
+		if(dbCommunity==null) {
+			throw new RuntimeException("상세보기 오류에요 ") ;
+		}
+		
+		CommunityResponseDTO dtoComm=toDTO(dbCommunity);
+		System.out.println("서비스에서 dtoComm"+dtoComm);
+		System.out.println("서비스에서 dtoComm"+dtoComm.getReplyList());
+		return dtoComm;
 	}
 
 	@Override
@@ -61,6 +68,13 @@ public class CommunityServiceImpl implements CommunityService {
 	public void deleteCommunity(Long CommunityNo) {
 		communityRepository.deleteById(CommunityNo);
 
+	}
+
+	@Override
+	public void countUpdate(Long CommunityNo) {
+		if(CommunityNo !=null) {
+		communityRepository.countUpdate(CommunityNo);
+		}
 	}
 
 }

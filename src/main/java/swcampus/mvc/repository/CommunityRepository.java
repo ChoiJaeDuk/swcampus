@@ -19,5 +19,4 @@ public interface CommunityRepository extends JpaRepository<Community, Long>, Que
 	@Modifying
 	void countUpdate(Long communityNo);
 	
-
 }
