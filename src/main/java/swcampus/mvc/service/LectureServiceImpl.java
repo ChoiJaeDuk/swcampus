@@ -76,7 +76,7 @@ public class LectureServiceImpl implements LectureService {
 		dbLecture.setLectureAgency(lectureDto.getLectureAgency());
 		dbLecture.setLectureTarget(lectureDto.getLectureTarget());
 		dbLecture.setLectureMethod(lectureDto.getLectureMethod());
-		dbLecture.setCategory(lectureDto.getCategoryNo());
+		dbLecture.setCategory(dbcate);
 		dbLecture.setLectureTitle(null);
 		dbLecture.setLectureTeacher(null);
 	}
