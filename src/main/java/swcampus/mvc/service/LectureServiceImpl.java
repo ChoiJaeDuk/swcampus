@@ -1,7 +1,6 @@
 package swcampus.mvc.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Category;
-import swcampus.mvc.domain.Community;
 import swcampus.mvc.domain.Lecture;
+import swcampus.mvc.domain.Likes;
 import swcampus.mvc.domain.User;
-import swcampus.mvc.dto.CommunityResponseDTO;
 import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.dto.LectureResponseDTO;
+import swcampus.mvc.dto.LikesDTO;
 import swcampus.mvc.repository.CategoryRepository;
 import swcampus.mvc.repository.LectureRepository;
 import swcampus.mvc.repository.UserRepository;
@@ -34,6 +33,9 @@ public class LectureServiceImpl implements LectureService {
 	
 	@Autowired
 	private CategoryRepository cateRep;
+	
+	@Autowired
+	private LikesService likesService;
 
 	@Override
 	public List<Lecture> selectAll() {
@@ -76,10 +78,44 @@ public class LectureServiceImpl implements LectureService {
 		dbLecture.setLectureAgency(lectureDto.getLectureAgency());
 		dbLecture.setLectureTarget(lectureDto.getLectureTarget());
 		dbLecture.setLectureMethod(lectureDto.getLectureMethod());
-		dbLecture.setCategory(lectureDto.getCategoryNo());
-		dbLecture.setLectureTitle(null);
-		dbLecture.setLectureTeacher(null);
+		dbLecture.setCategory(dbcate);
+		dbLecture.setLectureTitle(lectureDto.getLectureTitle());
+		dbLecture.setLectureTeacher(lectureDto.getLectureTeacher());
+		dbLecture.setLecture_classDetail(lectureDto.getLecture_classDetail());
+		dbLecture.setLectureStartDate(lectureDto.getLectureStartDate());
+		dbLecture.setLectureEndDate(lectureDto.getLectureEndDate());
+		dbLecture.setLectureUrl(lectureDto.getLectureUrl());
+		}
+
+	/**
+	@Override
+	public int isLikes(Likes likes) {
+		
+		Likes dbLike = likesService.selectLike(new Likes(likes.getLikesNo(),likes.getLecture(), likes.getUser()));
+		if (dbLike == null) {
+			increaseLikeNo(likes);
+		} else {
+			decreaseLikeNo(likes);
+		
+		return selectByLectureNo(null);
+		}
+
 	}
+	*/
+	
+
+	
+	/**
+	@Override
+	public int isLikes(Likes likes) {
+		Likes dbLike = likesService.selectLike(new LikesID(likes.getBoardNo(), likes.getUserId()));
+		if (dbLike == null) {
+			increaseLikeNo(likes);
+		} else {
+			decreaseLikeNo(likes);
+		}
+		return selectByBoardNo(likes.getBoardNo()).getBoardLikeNo();
+*/
 	
 
 	

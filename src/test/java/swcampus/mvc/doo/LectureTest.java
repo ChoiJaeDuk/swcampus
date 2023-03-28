@@ -10,12 +10,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import swcampus.mvc.controller.LectureController;
 import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.repository.LectureRepository;
 
-
+@WebAppConfiguration
 @SpringBootTest
 @Transactional
 @Commit
@@ -27,6 +28,7 @@ public class LectureTest {
 	@Autowired
 	private LectureController lectureCon;
 	
+	/*
 	@Test
 	void lecin(){
 		for (int i =0; i<=2;i++) {
@@ -34,6 +36,7 @@ public class LectureTest {
 		lectureCon.lectureInsert(dto);
 		}
 	}
+	*/
 	
 	@ParameterizedTest
 	@ValueSource(longs = 4L)
@@ -47,6 +50,12 @@ public class LectureTest {
 		lectureCon.deleteLec(lectureNo);
 	}
 	 
+	
+	 @Test
+	   void lecup() {
+	      LectureDTO dto = new LectureDTO(15L,3L, "수정2", "수정2", "온라인수정2", "안녕2", "테스트2", "디테일2", LocalDateTime.now(), LocalDateTime.now(),"test@fdg",5L);
+	      lectureCon.lectureUpdate(dto);
+	   }
 	 
 	 
 	

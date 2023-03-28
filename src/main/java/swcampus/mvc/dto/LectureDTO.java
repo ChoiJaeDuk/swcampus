@@ -34,8 +34,10 @@ public class LectureDTO {
 	private LocalDateTime lectureEndDate;
 	
 	private String lectureUrl;
-
+	
 	private Long categoryNo;
+
+	//private Long categoryNo;
 
 
 
