@@ -27,12 +27,36 @@ public interface ReviewService {
 				.build();
 	}
 	
+	/**
+	 * 리뷰 등록
+	 * @param reviewDTO
+	 */
 	void reviewInsert(ReviewRequestDTO reviewDTO);
 	
+	/**
+	 * 리뷰번호에 해당하는 리뷰를 삭제한다.
+	 * @param reviewNo
+	 */
 	void reviewDelete(Long reviewNo);
 	
+	/**
+	 * 강의번호에 해당하는 리뷰리스트를 불러온다
+	 * @param lectureNo
+	 * @return
+	 */
 	PageResponseDTO<ReviewResponseDTO, Review> reviewSelectByLectureId(Long lectureNo);
 	
+	/**
+	 * 관리자 승인 
+	 * @param reviewNo
+	 */
 	void reviewConfirm(Long reviewNo);
+	
+	/**
+	 * 강의 번호를 받아 강의의 평점을 불러온다.
+	 * @param LectureNo
+	 * @return
+	 */
+	double reviewStarAvg(Long LectureNo);
 	
 }

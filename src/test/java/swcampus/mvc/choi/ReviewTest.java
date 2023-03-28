@@ -60,4 +60,13 @@ public class ReviewTest {
 		
 	}
 	
+	@Test
+	void reviewStarAvg() {
+//		double d = reviewRep.reviewStarAvg(1L);
+//		
+//		System.out.println(d);
+		
+		System.out.println(reviewService.reviewStarAvg(1L));
+	}
+	
 }
