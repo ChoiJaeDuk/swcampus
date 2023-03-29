@@ -27,28 +27,34 @@
 <script type="text/javascript">
 
 
-	$(document).ready(function() {
+	$(function() {
 		$('#summernote').summernote({
 			height : 500,
 			focus : true,
 			lang : "ko-KR",
-			onImageUpload : function(files, editor, welEditable) {
-				sendFile(files[0], editor, welEditable);
-			}
+			
+			callbacks:{
+			onImageUpload : function(files) {
+				sendFile(files[0],this);
+					}
+				}
+			
 		});
 	});
-	function sendFile(file, editor, welEditable) {
+	function sendFile(file,editor) {
 	    var data = new FormData();
 	    data.append("file", file);
 	    $.ajax({
 	        data: data,
 	        type: "POST",
-	        url: "/ajax/saveimage",
+	        url: "${pageContext.request.contextPath}/ajax/saveimage",
 	        cache: false,
 	        contentType: false,
+	        enctype:"multipart/data",
 	        processData: false,
-	        success: function(url) {
-	            editor.insertImage(welEditable, url);
+	        success: function(img) {
+	        	console.log(img.url)
+	        	$(editor).summernote("insertImage", img.url);
 	        }
 	    });
 	};

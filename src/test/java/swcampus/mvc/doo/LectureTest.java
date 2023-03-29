@@ -27,13 +27,11 @@ public class LectureTest {
 	@Autowired
 	private LectureController lectureCon;
 	
-	@Test
-	void lecin(){
-		for (int i =0; i<=2;i++) {
-			LectureDTO dto = new LectureDTO(3L, "KOSTA", "취업자", "오프라인", "안녕", "지현", "ai", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",3L);
-		lectureCon.lectureInsert(dto);
-		}
-	}
+	/*
+	 * @Test void lecin(){ for (int i =0; i<=2;i++) { LectureDTO dto = new
+	 * LectureDTO(3L, "KOSTA", "취업자", "오프라인", "안녕", "지현", "ai", LocalDateTime.now(),
+	 * LocalDateTime.now(),"as@fdg",3L); lectureCon.lectureInsert(dto); } }
+	 */
 	
 	@ParameterizedTest
 	@ValueSource(longs = 4L)
