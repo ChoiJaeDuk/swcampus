@@ -19,7 +19,7 @@ Roboto
 </style>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>소프트웨어캠퍼스</title>
 <style type="text/css">
 * {
 	margin: 0;
@@ -116,11 +116,10 @@ Roboto
 }
 
 /*top ^*/
-.top-wrapper{
-  z-index: 9999;
+.top-wrapper {
+	z-index: 9999;
 }
 </style>
-
 </head>
 <body>
 
@@ -133,9 +132,33 @@ Roboto
 					.addClass("hide");
 			$(obj).next("ul").toggleClass("hide");
 		}
+
 		
+		let category01;
+		let category02;
+		let category03;
+		$(function() {
+			$(".Category01").on("click", function() {
+				category01 = $(this).text();
+			})
+
+			$(".Category02").on("click", function() {
+				category02 = $(this).text();
+			})
+
+			$(".Category03").on("click", function() {
+				category03 = $(this).text();
+				searchCategory();
+			})
+		});
 		
-		
+		function searchCategory() {
+			if (category01 && category02 && category03) {
+				// 현재 URL에 카테고리 파라미터를 추가하여 이동합니다.
+				window.location.href = "/details/search?category01="
+						+category01+"&category02="+category02+"&category03=" + category03;
+			}
+		}
 	</script>
 
 
@@ -144,17 +167,18 @@ Roboto
 			style="width: 1200px; padding: 40px 30px 0 30px; align-content: center; margin: 0 auto;">
 			<div class="logoCon"
 				style="align-content: center; width: 260px; position: relative; float: left;">
-				<img src="IMG/logoImg.png">
+				<img src="/IMG/logoImg.png" onclick="location.href='/'" style="cursor: pointer;">
 			</div>
 			<div
 				style="width: 200px; height: 30px; position: relative; float: right; align-items: center; margin-top: 5px; font-size: 16px;">
 				<div class="login"
 					style="width: 49%; position: relative; float: left; border-right: 1px solid #cccccc; text-align: center">
-					<a href="#" style="text-decoration: none; color: #222222">로그인</a>
+					<a href="/utill/login"
+						style="text-decoration: none; color: #222222">로그인</a>
 				</div>
 				<div class="join"
 					style="width: 49%; position: relative; float: right; text-align: center;">
-					<a href="#" style="text-decoration: none; color: #222222">회원가입</a>
+					<a href="/utill/join" style="text-decoration: none; color: #222222">회원가입</a>
 				</div>
 			</div>
 		</div>
@@ -165,76 +189,80 @@ Roboto
 			style="width: 1200px; align-content: center; margin: 0 auto; text-align: center;">
 
 			<ul class="navi topCategory">
-				<li><a href="javascript:;" onclick="addCategoryClass(this);">재직자</a>
+				<li><a href="javascript:;" class="Category01"
+					onclick="addCategoryClass(this);">재직자</a>
 					<ul class="hide middleCategoryClass">
-						<li><a href="javascript:;" onclick="addCategoryClass(this);">온라인</a>
+						<li><a href="javascript:;" onclick="addCategoryClass(this);"
+							class="Category02">온라인</a>
 							<ul class="hide categoryClass">
-								<li><a href="#">백엔드</a></li>
-								<li><a href="#">풀스택</a></li>
-								<li><a href="#">AI</a></li>
-								<li><a href="#">보안</a></li>
-								<li><a href="#">데브옵스.인프라.툴</a></li>
-								<li><a href="#">프론트엔드</a></li>
-								<li><a href="#">데이터</a></li>
-								<li><a href="#">클라우드</a></li>
-								<li><a href="#">SW공학</a></li>
+								<li><a href="javascript:;" class="Category03">백엔드</a></li>
+								<li><a href="javascript:;" class="Category03">프론트엔드</a></li>
+								<li><a href="javascript:;" class="Category03">풀스택</a></li>
+								<li><a href="javascript:;" class="Category03">AI</a></li>
+								<li><a href="javascript:;" class="Category03">보안</a></li>
+								<li><a href="javascript:;" class="Category03">데브옵스.인프라.툴</a></li>
+								<li><a href="javascript:;" class="Category03">데이터</a></li>
+								<li><a href="javascript:;" class="Category03">클라우드</a></li>
+								<li><a href="javascript:;" class="Category03">SW공학</a></li>
 
 							</ul></li>
-						<li><a href="javascript:;" onclick="addCategoryClass(this);">오프라인</a>
+						<li><a href="javascript:;" onclick="addCategoryClass(this);"
+							class="Category02">오프라인</a>
 							<ul class="hide categoryClass">
-								<li><a href="#">백엔드</a></li>
-								<li><a href="#">풀스택</a></li>
-								<li><a href="#">AI</a></li>
-								<li><a href="#">보안</a></li>
-								<li><a href="#">데브옵스.인프라.툴</a></li>
-								<li><a href="#">프론트엔드</a></li>
-								<li><a href="#">데이터</a></li>
-								<li><a href="#">클라우드</a></li>
-								<li><a href="#">SW공학</a></li>
-
+								<li><a href="javascript:;" class="Category03">백엔드</a></li>
+								<li><a href="javascript:;" class="Category03">프론트엔드</a></li>
+								<li><a href="javascript:;" class="Category03">풀스택</a></li>
+								<li><a href="javascript:;" class="Category03">AI</a></li>
+								<li><a href="javascript:;" class="Category03">보안</a></li>
+								<li><a href="javascript:;" class="Category03">데브옵스.인프라.툴</a></li>
+								<li><a href="javascript:;" class="Category03">데이터</a></li>
+								<li><a href="javascript:;" class="Category03">클라우드</a></li>
+								<li><a href="javascript:;" class="Category03">SW공학</a></li>
 							</ul></li>
 					</ul></li>
-				<li><a href="javascript:;" onclick="addCategoryClass(this);">취업준비생</a>
+				<li><a href="javascript:;" class="Category01"
+					onclick="addCategoryClass(this);">취업준비생</a>
 					<ul class="hide middleCategoryClass">
-						<li><a href="javascript:;" onclick="addCategoryClass(this);">온라인</a>
+						<li><a href="javascript:;" onclick="addCategoryClass(this);"
+							class="Category02">온라인</a>
 							<ul class="hide categoryClass">
-								<li><a href="#">백엔드</a></li>
-								<li><a href="#">풀스택</a></li>
-								<li><a href="#">AI</a></li>
-								<li><a href="#">보안</a></li>
-								<li><a href="#">데브옵스.인프라.툴</a></li>
-								<li><a href="#">프론트엔드</a></li>
-								<li><a href="#">데이터</a></li>
-								<li><a href="#">클라우드</a></li>
-								<li><a href="#">SW공학</a></li>
+								<li><a href="javascript:;"  class="Category03">백엔드</a></li>
+								<li><a href="javascript:;"  class="Category03">프론트엔드</a></li>
+								<li><a href="javascript:;"  class="Category03">풀스택</a></li>
+								<li><a href="javascript:;"  class="Category03">AI</a></li>
+								<li><a href="javascript:;"  class="Category03">보안</a></li>
+								<li><a href="javascript:;"  class="Category03">데브옵스.인프라.툴</a></li>
+								<li><a href="javascript:;"  class="Category03">데이터</a></li>
+								<li><a href="javascript:;"  class="Category03">클라우드</a></li>
+								<li><a href="javascript:;"  class="Category03">SW공학</a></li>
 
 							</ul></li>
-						<li><a href="javascript:;" onclick="addCategoryClass(this);">오프라인</a>
+						<li><a href="javascript:;" onclick="addCategoryClass(this);"
+							class="Category02">오프라인</a>
 							<ul class="hide categoryClass">
-								<li><a href="#">백엔드</a></li>
-								<li><a href="#">풀스택</a></li>
-								<li><a href="#">AI</a></li>
-								<li><a href="#">보안</a></li>
-								<li><a href="#">데브옵스.인프라.툴</a></li>
-								<li><a href="#">프론트엔드</a></li>
-								<li><a href="#">데이터</a></li>
-								<li><a href="#">클라우드</a></li>
-								<li><a href="#">SW공학</a></li>
+								<li><a href="javascript:;"  class="Category03">백엔드</a></li>
+								<li><a href="javascript:;"  class="Category03">프론트엔드</a></li>
+								<li><a href="javascript:;"  class="Category03">풀스택</a></li>
+								<li><a href="javascript:;"  class="Category03">AI</a></li>
+								<li><a href="javascript:;"  class="Category03">보안</a></li>
+								<li><a href="javascript:;"  class="Category03">데브옵스.인프라.툴</a></li>
+								<li><a href="javascript:;"  class="Category03">데이터</a></li>
+								<li><a href="javascript:;"  class="Category03">클라우드</a></li>
+								<li><a href="javascript:;"  class="Category03">SW공학</a></li>
 
 							</ul></li>
 					</ul></li>
 				<li><a href="javascript:;" onclick="addCategoryClass(this);">커뮤니티</a>
 					<ul class="hide categoryClass">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">문의사항</a></li>
-						<li><a href="#">진로이야기</a></li>
-						<li><a href="#">코딩이야기</a></li>
+						<li><a href="/board/noticeBoard">공지사항</a></li>
+						<li><a href="/board/QABoard">문의사항</a></li>
+						<li><a href="/board/freeBoard">진로이야기</a></li>
+						<li><a href="/board/codeBoard">코딩이야기</a></li>
 					</ul></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
 	<!--top-->
-
 </body>
 </html>
