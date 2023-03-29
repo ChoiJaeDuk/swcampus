@@ -38,6 +38,10 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/utill/{1}.jsp" />
 	</definition>
-
+	
+	<definition name="insertForm/**" extends="layoutBanner">
+		<put-attribute name="content"
+			value="/WEB-INF/views/insertForm/{1}.jsp" />
+	</definition>
 
 </tiles-definitions>

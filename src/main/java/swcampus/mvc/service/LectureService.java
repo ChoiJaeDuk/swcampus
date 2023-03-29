@@ -4,9 +4,11 @@ import java.util.List;
 
 import swcampus.mvc.domain.Category;
 import swcampus.mvc.domain.Lecture;
+import swcampus.mvc.domain.Likes;
 import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.dto.LectureResponseDTO;
+import swcampus.mvc.dto.LikesDTO;
 
 public interface LectureService {
 	
@@ -39,7 +41,28 @@ public interface LectureService {
 	     * 		  강의상세보기, 강의시작일, 강의종료일,강의url
 	     */
 		void updateLecture(LectureDTO lectureDto);
+		
+	
+		
+		 /**
+	     * 좋아요가 됐는지 
+	     * */
+	    int isLike(LikesDTO likesDto);
 
+	    
+	    
+	    /**
+	     * 좋아요 늘리기
+	     * : Long lectureNo
+	     * */
+	    void increaseLikeNo(LikesDTO likesDto);
+	    
+	    /**
+	     * 좋아요 줄이기
+	     * : Long lectureNo
+	     * */
+	    void decreaseLikeNo(LikesDTO likesDto);
+	    
 		
 		
 		
@@ -78,6 +101,7 @@ public interface LectureService {
 					.category(ca)
 					.build();
 		}
+
 		 
 
 		
