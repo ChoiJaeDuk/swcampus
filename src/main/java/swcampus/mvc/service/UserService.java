@@ -62,15 +62,18 @@ public interface UserService {
 	 */
 	UserResponseDTO userSelectById(Long userNo);
 	
-	
-	
 	/**
 	 * 회원목록 조회
 	 * @return
 	 */
 	PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO, String sort);
 	
-	
+	/**
+	 * 아이디 중복확인
+	 * @param id
+	 * @return
+	 */
+	int idCheck(String id);
 	
 	
 }

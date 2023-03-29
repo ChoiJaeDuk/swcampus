@@ -74,5 +74,10 @@ public class UserServiceImpl implements UserService {
 		return new PageResponseDTO<>(result, fn);
 	}
 
+	@Override
+	public int idCheck(String id) {
+		return 0;
+	}
+
 	
 }
