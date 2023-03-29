@@ -36,6 +36,8 @@ public class LectureDTO {
 	private String lectureUrl;
 	
 	private Long categoryNo;
+	
+	private int lectureLikeIs;
 
 	//private Long categoryNo;
 

@@ -26,10 +26,7 @@ public class LikesServiceImpl implements LikesService {
 	@Autowired
 	private LectureRepository lecRep;
 	
-	@Autowired
-	private LikesService likeServ;
-	
-	
+
 	/**
 	 * 찜하기
 	 */
