@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
@@ -36,7 +34,7 @@ public class LectureTest {
 		lectureCon.lectureInsert(dto);
 		}
 	}
-	*/
+	
 	
 	@ParameterizedTest
 	@ValueSource(longs = 4L)
@@ -49,13 +47,25 @@ public class LectureTest {
 	 void deleteLec(Long lectureNo) {
 		lectureCon.deleteLec(lectureNo);
 	}
-	 
+	 */
 	
 	 @Test
 	   void lecup() {
-	      LectureDTO dto = new LectureDTO(15L,3L, "수정2", "수정2", "온라인수정2", "안녕2", "테스트2", "디테일2", LocalDateTime.now(), LocalDateTime.now(),"test@fdg",5L);
+	      LectureDTO dto = new LectureDTO(13L,3L, "Agen2", "타겟2", "온라인수정2", "안녕2", "강사님2", "디테일2", LocalDateTime.now(), LocalDateTime.now(),"test@fdg",1L);
 	      lectureCon.lectureUpdate(dto);
 	   }
+	 
+	 
+		/**
+		 @Test
+		void likein(){
+			for (int i =0; i<=2;i++) {
+				LectureDTO dto = new LectureDTO(3L, "KOSTA", "취업자", "오프라인", "안녕", "지현", "ai", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",3L);
+			lectureCon.lectureInsert(dto);
+			}
+			
+		}
+		*/
 	 
 	 
 	

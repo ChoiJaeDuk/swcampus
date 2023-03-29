@@ -1,6 +1,9 @@
 package swcampus.mvc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import swcampus.mvc.domain.Lecture;
 import swcampus.mvc.domain.Likes;
@@ -10,12 +13,21 @@ import swcampus.mvc.repository.LectureRepository;
 import swcampus.mvc.repository.LikesRepository;
 import swcampus.mvc.repository.UserRepository;
 
+
+@Service
 public class LikesServiceImpl implements LikesService {
 
 	@Autowired
 	private LikesRepository likesRep;
+	
+	@Autowired
 	private UserRepository userRep;
+	
+	@Autowired
 	private LectureRepository lecRep;
+	
+	@Autowired
+	private LikesService likeServ;
 	
 	
 	/**
@@ -29,7 +41,9 @@ public class LikesServiceImpl implements LikesService {
 		Likes likes = toEntitiy(likeDto,dbUser,dbLect);
 		
 		likesRep.save(likes);
-	}
+	}	
+	
+	
 
 	/**
 	 * 찜취소
@@ -41,19 +55,27 @@ public class LikesServiceImpl implements LikesService {
 		
 	}
 
+
+	/**
+	 * like 있는지 여부 검사
+	 */
 	@Override
-	public Likes selectLike(Likes likes) {
-		//Likes dblikes=likesRep.findById(likesNo).orElse(null);
-		
-		//return dblikes;
+	public Likes selectLike(Long likesNo) {
+		return likesRep.findById(likesNo).orElse(null);
+	}
+
+
+	/**
+	 * 좋아요 리스트 불러오기
+	 * */
+	@Override
+	public List<Likes> selectLikesListByUserNo(String userNo) {
+		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	/**
-	 * 찜여부확인
-	 */
-	
-	
+
+
+
 
 	
 

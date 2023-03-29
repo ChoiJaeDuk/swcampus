@@ -3,13 +3,16 @@ package swcampus.mvc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import swcampus.mvc.domain.Likes;
+import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.dto.LectureResponseDTO;
+import swcampus.mvc.dto.LikesDTO;
 import swcampus.mvc.service.LectureService;
 
 @Controller
@@ -89,18 +92,18 @@ public class LectureController {
 	}
 	 */
 	
-	/**
-	 * 찜 됐는지 획인
-	 */
-	/**
-	 * 좋아요 기능 눌렀을 때 좋아요가 변경되는 기능
-	 * */
-	/**@RequestMapping("/Lecture/likes")
+	
+	
+	  /**좋아요 기능 눌렀을 때 좋아요가 변경되는 기능
+	  */
+	@RequestMapping("/Lecture/likes")
 	@ResponseBody
-	public int isLike(Likes likes) {
-		int likesedCount = lectureService.isLikes(likes);
+	public int isLike(LikesDTO LikesDTO) {
+		int likesedCount = lectureService.isLike(LikesDTO);
 		return likesedCount;	
-		}
-		*/	
+	}
+	
+	
+	
 	
 }// Class LectureController 끝

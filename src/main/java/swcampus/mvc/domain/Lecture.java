@@ -79,6 +79,9 @@ public class Lecture {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_no")
 	private Category category;//be,fe,ai...
+	
+	@Column(nullable = false)
+	private int lectureLikeIs;
 
 	}
 	

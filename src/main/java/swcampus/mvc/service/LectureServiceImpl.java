@@ -24,23 +24,23 @@ import swcampus.mvc.repository.UserRepository;
 @Transactional
 @RequiredArgsConstructor
 public class LectureServiceImpl implements LectureService {
-	
+
 	@Autowired 
 	private LectureRepository lectureRep;
-	
+
 	@Autowired 
 	private UserRepository userRep; 
-	
+
 	@Autowired
 	private CategoryRepository cateRep;
-	
+
 	@Autowired
-	private LikesService likesService;
+	private LikesService likeService;
 
 	@Override
 	public List<Lecture> selectAll() {
-		
-	return lectureRep.findAll(Sort.by(Sort.Direction.DESC, "lectureNo"));
+
+		return lectureRep.findAll(Sort.by(Sort.Direction.DESC, "lectureNo"));
 	}
 
 	@Override
@@ -51,30 +51,30 @@ public class LectureServiceImpl implements LectureService {
 		System.out.println(dto);
 		return dto;
 	}
-	
+
 	@Override
 	public void insertLecture(LectureDTO lectureDto) {
 		User dbUser=userRep.findById(lectureDto.getUserNo()).orElse(null);
 		Category dbCate=cateRep.findById(lectureDto.getCategoryNo()).orElse(null);
-    		System.out.println("서비스에서 "+dbUser);
-    		System.out.println("서비스에서 "+dbCate);
+		System.out.println("서비스에서 "+dbUser);
+		System.out.println("서비스에서 "+dbCate);
 		Lecture lecture =toEntity(lectureDto, dbUser, dbCate);
-			System.out.println("서비스에서 "+lecture);
+		System.out.println("서비스에서 "+lecture);
 		lectureRep.save(lecture); 
-		
+
 	}
 
 	@Override
 	public void deleteByLectureNo(Long LectureNo) {
 		lectureRep.deleteById(LectureNo);
-		
+
 	}
 
 	@Override
 	public void updateLecture(LectureDTO lectureDto) {
 		Lecture dbLecture = lectureRep.getReferenceById(lectureDto.getLectureNo());
 		Category dbcate = cateRep.getReferenceById(lectureDto.getCategoryNo());
-		
+
 		dbLecture.setLectureAgency(lectureDto.getLectureAgency());
 		dbLecture.setLectureTarget(lectureDto.getLectureTarget());
 		dbLecture.setLectureMethod(lectureDto.getLectureMethod());
@@ -85,39 +85,46 @@ public class LectureServiceImpl implements LectureService {
 		dbLecture.setLectureStartDate(lectureDto.getLectureStartDate());
 		dbLecture.setLectureEndDate(lectureDto.getLectureEndDate());
 		dbLecture.setLectureUrl(lectureDto.getLectureUrl());
-		}
+	}
 
-	/**
+
+
+
+
+
 	@Override
-	public int isLikes(Likes likes) {
-		
-		Likes dbLike = likesService.selectLike(new Likes(likes.getLikesNo(),likes.getLecture(), likes.getUser()));
+	public int isLike(LikesDTO likesDto) {
+
+		Likes dbLike = likeService.selectLike(likesDto.getLikesNo());
 		if (dbLike == null) {
-			increaseLikeNo(likes);
+			increaseLikeNo(likesDto);
 		} else {
-			decreaseLikeNo(likes);
-		
-		return selectByLectureNo(null);
+			decreaseLikeNo(likesDto);
 		}
+		return selectByLectureNo(likesDto.getLikesNo()).getLectureLikeIs();
+		//(likes.getLikesNo()).getBoardLikeNo();
+
+	}
+
+	@Override
+	public void increaseLikeNo(LikesDTO likesDto) {
+		likeService.insertLike(likesDto);
+		Lecture dbLecture = lectureRep.findById(likesDto.getLectureNo()).orElse(null);
+		
+		dbLecture.setLectureLikeIs(dbLecture.getLectureLikeIs() + 1);		
+	}
+
+	@Override
+	public void decreaseLikeNo(LikesDTO likesDto) {
+		likeService.deleteLike(likesDto.getLikesNo());
+		
+		Lecture dbLecture = lectureRep.findById(likesDto.getLectureNo()).orElse(null);
+		
+		dbLecture.setLectureLikeIs(dbLecture.getLectureLikeIs() - 1);		
 
 
 	}
-	*/
-	
 
-	
-	/**
-	@Override
-	public int isLikes(Likes likes) {
-		Likes dbLike = likesService.selectLike(new LikesID(likes.getBoardNo(), likes.getUserId()));
-		if (dbLike == null) {
-			increaseLikeNo(likes);
-		} else {
-			decreaseLikeNo(likes);
-		}
-		return selectByBoardNo(likes.getBoardNo()).getBoardLikeNo();
-*/
-	
 
-	
+
 }
