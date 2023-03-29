@@ -27,6 +27,7 @@ public class LectureTest {
 	private LectureController lectureCon;
 	
 	/*
+
 	@Test
 	void lecin(){
 		for (int i =0; i<=2;i++) {
@@ -34,6 +35,7 @@ public class LectureTest {
 		lectureCon.lectureInsert(dto);
 		}
 	}
+
 	
 	
 	@ParameterizedTest
