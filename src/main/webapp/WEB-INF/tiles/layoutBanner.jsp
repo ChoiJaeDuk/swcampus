@@ -268,7 +268,6 @@ $(function(){
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="banner" />
 	<tiles:insertAttribute name="content" />
-
 	<tiles:insertAttribute name="footer" />
 </body>
 
