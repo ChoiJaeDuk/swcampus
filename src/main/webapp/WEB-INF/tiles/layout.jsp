@@ -23,7 +23,7 @@ Roboto
 	crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>소프트웨어캠퍼스</title>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -123,6 +123,7 @@ Roboto
 	border-radius: 10px;
 	margin: 5px;
 	padding: 0px 5px;
+	cursor: pointer;
 }
 
 .lecture {
@@ -210,6 +211,7 @@ Roboto
 	color: #fff;
 }
 </style>
+<link rel="shortcut icon" type="image/x-icon" href="/IMG/logoIcon.png">	
 </head>
 <body>
 

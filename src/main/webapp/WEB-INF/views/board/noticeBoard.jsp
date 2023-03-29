@@ -31,7 +31,7 @@
 									<button type="submit" class="btn btn-dark">검색</button>
 								</div>
 							</form>
-							<a href="#"
+							<a href="/insertForm/boardInsert?boardType=notice"
 								style="margin-right:110px; float: right; font-weight: 500; font-size: 15px; line-height: 30px; color: #ffffff; padding: 5px 10px; background-color: #2D65F2; text-decoration: none;">공지사항작성하러가기 <i class="fa-solid fa-chevron-right fa-beat-fade"></i>
 							</a>
 						</div>

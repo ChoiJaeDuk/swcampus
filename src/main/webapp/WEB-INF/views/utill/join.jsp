@@ -22,8 +22,7 @@
 	margin: 0 auto;
 	padding: 45px;
 	text-align: center;
-	box-shadow: 0 0 20px 0 #2D65F220, 0 5px 5px 0
-		#2D65F220;
+	box-shadow: 0 0 20px 0 #2D65F220, 0 5px 5px 0 #2D65F220;
 }
 
 .form input {
@@ -109,82 +108,118 @@
 .container .info span .fa {
 	color: #EF3B3A;
 }
-.error {
-  color: red;
+
+#confirm-password-message, #confirm-email-message {
+	color: red;
+	font-size: 12px;
+	text-align: left;
 }
-.red-placeholder::placeholder {
-  color: red;
+#confirm-ID-message{
+	font-size: 12px;
+	text-align: left;
+	clear: both;
 }
 </style>
 
 </head>
 <body>
-<div class="wapper" style="min-height: 800px; background-color: #EFF5FF20;">
-	
-	<div class="login-page" style="margin-bottom: 200px;">
-	    <h3 style="font-size: 40px; color: #2D65F2; margin-bottom: 20px; text-align: center; font-weight: 800;">회원가입</h3>
-		<div class="form">
-			<form class="login-form">
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">아이디</h3>
-				<input type="text" placeholder="아이디" /> 
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">비밀번호</h3>
-				<input type="password"  id="password-input" placeholder="비밀번호" />
-				<input type="password" id="confirm-password-input" placeholder="비밀번호확인" style="width: 79%; float: left;"/>
-				<button style="width: 20%; float: right;" type="button" onclick="validatePassword()">비밀번호확인</button>
-				<h3 style="color: #111111; padding-top:20px; margin: 50px 0px 10px; text-align: left; clear: both;">이름</h3>
-				<input type="text" placeholder="이름" />
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">전화번호</h3>
-				<input type="text" placeholder="전화번호" />
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">이메일</h3>
-				<input type="text" id="email-input" placeholder="이메일" onblur="validateEmail()" onfocus="clearValue()" />
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">회사명</h3>
-				<input type="text" placeholder="회사명" />
-				<h3 style="color: #111111; margin: 20px 0px 10px; text-align: left;">직무</h3>
-				<input type="text" placeholder="직무" />
-				
-				<button style="margin-top: 50px;" type="submit">JOIN</button>
-			</form>
+	<div class="wapper"
+		style="min-height: 800px; background-color: #EFF5FF20;">
+
+		<div class="login-page" style="margin-bottom: 200px;">
+			<h3
+				style="font-size: 40px; color: #2D65F2; margin-bottom: 20px; text-align: center; font-weight: 800;">회원가입</h3>
+			<div class="form">
+				<form class="login-form">
+					<h3
+						style="color: #111111; margin: 20px 0px 10px; text-align: left;">아이디</h3>
+					<input type="text" placeholder="아이디"
+						style="width: 79%; float: left; margin-bottom: 5px;" id="id-input" />
+					<button style="width: 20%; float: right;" type="button"
+						id="check-id-button">아이디 중복확인</button>
+					<p id="confirm-ID-message"></p>
+
+					<h3
+						style="color: #111111; padding-top: 30px; margin: 0px 0px 10px; text-align: left; clear: both;">비밀번호</h3>
+					<input type="password" id="password-input" placeholder="비밀번호" /> <input
+						type="password" id="confirm-password-input" placeholder="비밀번호확인"
+						style="margin-bottom: 5px;" />
+					<p id="confirm-password-message"></p>
+					<h3
+						style="color: #111111; padding-top: 20px; margin: 20px 0px 10px; text-align: left; clear: both;">이름</h3>
+					<input type="text" placeholder="이름" />
+					<h3
+						style="color: #111111; margin: 20px 0px 10px; text-align: left;">전화번호</h3>
+					<input type="text" placeholder="전화번호" />
+					<h3
+						style="color: #111111; margin: 20px 0px 10px; text-align: left;">이메일</h3>
+					<input type="email" id="emailInput" placeholder="이메일"
+						style="margin-bottom: 5px;" />
+					<p id="confirm-email-message"></p>
+
+					<h3
+						style="color: #111111; margin: 20px 0px 10px; text-align: left;">회사명</h3>
+					<input type="text" placeholder="회사명" />
+					<h3
+						style="color: #111111; margin: 20px 0px 10px; text-align: left;">직무</h3>
+					<input type="text" placeholder="직무" />
+
+					<button style="margin-top: 50px;" type="submit">JOIN</button>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-<script>
+	<script>
+		function validateEmail() {
+			const emailInput = document.getElementById("emailInput");
+			const email = emailInput.value;
+			const message = document.getElementById("confirm-email-message");
 
-function validateEmail() {
-  const emailInput = document.getElementById("email-input");
-  const email = emailInput.value;
-  if (!email.includes("@")) {
-    emailInput.value = "이메일 형식이 올바르지 않습니다.";
-    emailInput.classList.add("error");
-  }
-}
+			if (!email.includes("@")) {
+				message.textContent = "이메일형식이 올바르지 않습니다.";
+			} else {
+				message.textContent = "";
+			}
+		}
+		emailInput.addEventListener("input", validateEmail);
 
-function clearValue() {
-  const emailInput = document.getElementById("email-input");
-  const email = emailInput.value;
+		function validatePassword() {
+			const passwordInput = document.getElementById("password-input");
+			const confirmPasswordInput = document
+					.getElementById("confirm-password-input");
+			const password = passwordInput.value;
+			const confirmPassword = confirmPasswordInput.value;
+			const message = document.getElementById("confirm-password-message");
 
-  if (email === "이메일 형식이 올바르지 않습니다.") {
-    emailInput.value = "";
-    emailInput.classList.remove("error");
-  }
-  
-}
+			if (password !== confirmPassword) {
+				message.textContent = "비밀번호가 일치하지 않습니다.";
+			} else {
+				message.textContent = "";
+			}
+		}
+		const confirmPasswordInput = document
+				.getElementById("confirm-password-input");
+		confirmPasswordInput.addEventListener("input", validatePassword);
+		
+		
+		  const idInput = document.getElementById("id-input");
+		  const checkIdButton = document.getElementById("check-id-button");
+		  const confirmIdMessage = document.getElementById("confirm-ID-message");
 
+		  checkIdButton.addEventListener("click", function() {
+		    //아이디 중복확인 기능
+		    const inputId = idInput.value.toUpperCase(); //입력받은아이디 대문자로 바꾸기
+		    const isDuplicated = (inputId === "USER"); // user라는 예시아이디가 중복된 것으로 처리
 
-function validatePassword() {
-	  const passwordInput = document.getElementById("password-input");
-	  const confirmPasswordInput = document.getElementById("confirm-password-input");
-	  const password = passwordInput.value;
-	  const confirmPassword = confirmPasswordInput.value;
-
-	  if (password !== confirmPassword) {
-	    confirmPasswordInput.value = "";
-	    confirmPasswordInput.placeholder = "비밀번호가 일치하지 않습니다.";
-	    confirmPasswordInput.classList.add("red-placeholder");
-	  }
-	}
-	
-
-</script>
+		    if (isDuplicated) {
+		      confirmIdMessage.textContent = "아이디 중복입니다.";
+		      confirmIdMessage.style.color = "red";
+		    } else {
+		      confirmIdMessage.textContent = "사용할 수 있는 아이디입니다.";
+		      confirmIdMessage.style.color = "green";
+		    }
+		  });
+	</script>
 
 </body>
 </html>
