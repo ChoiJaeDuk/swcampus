@@ -27,11 +27,6 @@ public interface LectureRepository extends JpaRepository<Lecture, Long> {
      * 카테고리별 강의조회
      */
     List<Lecture> findByCategory(String category_no);
-
-
-
-
-
-
+  
 
 }

@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,8 +24,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -82,6 +79,9 @@ public class Lecture {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_no")
 	private Category category;//be,fe,ai...
+	
+	@Column(nullable = false)
+	private int lectureLikeIs;
 
 	}
 	

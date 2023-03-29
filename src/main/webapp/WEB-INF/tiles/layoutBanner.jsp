@@ -19,12 +19,14 @@ Roboto
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap')
 	;
 </style>
+
 <script src="https://kit.fontawesome.com/0511fbc3bc.js" crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/x-icon" href="/IMG/logoIcon.png">	
+<title>소프트웨어캠퍼스</title>
 <style type="text/css">
-s
+
 * {
 	margin: 0px;
 }
@@ -123,6 +125,7 @@ s
 	border-radius: 10px;
 	margin: 5px;
 	padding: 0px 5px;
+	cursor: pointer;
 }
 
 .lecture {
@@ -266,7 +269,6 @@ $(function(){
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="banner" />
 	<tiles:insertAttribute name="content" />
-
 	<tiles:insertAttribute name="footer" />
 </body>
 

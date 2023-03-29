@@ -1,6 +1,5 @@
 package swcampus.mvc.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +15,8 @@ import swcampus.mvc.repository.ReviewRepository;
 import swcampus.mvc.repository.UserRepository;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 	
 	private final UserRepository userRep;

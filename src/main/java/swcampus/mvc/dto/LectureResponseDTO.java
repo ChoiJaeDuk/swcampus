@@ -31,5 +31,9 @@ public class LectureResponseDTO {
 
 	private String categoryName;
 
+	private int LectureLikeIs; 
+		
+
+
 
 }

@@ -165,6 +165,9 @@
 	color: #ffffff;
 	overflow: auto;
 }
+.reviewStar{
+	color: #FFC700;
+}
 </style>
 </head>
 <body>
@@ -180,7 +183,7 @@
 			<span class="LectureTitle">Kosta Spring Cloud 246기</span>
 		</div>
 
-		<div style="width: 100%; height: 300px; background-color: #EFF5FF">
+		<div style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png');   background-size: cover; ">
 			<div style="width: 1200px; margin: 0 auto;">
 				<div style="position: relative; top: 70px;">
 					<div class="LectureContentsTitle">
@@ -272,7 +275,7 @@
 					<div style="width: 100%; margin: 0 auto; height: 60px;">
 						<div
 							style="font-weight: 700; font-size: 24px; line-height: 35px; color: #2D65F2;">
-							리뷰모음 <a href="#"
+							리뷰모음  <span style="font-size: 20px;"  >[평균별점: </span><span class="reviewStar"  style="font-size: 20px;">5.0</span><span style="font-size: 20px;">점]</span> <a href="#"
 								style="float: right; font-weight: 500; font-size: 16px; line-height: 29px; color: #ffffff; padding: 2px 10px; background-color: #2D65F2; text-decoration: none; border-radius: 20px;">리뷰작성하러가기
 								<i class="fa-solid fa-chevron-right fa-beat-fade"></i>
 							</a>
@@ -295,7 +298,7 @@
 										</tr>
 										<tr>
 											<th>별점</th>
-											<td><span class="reviewStar">4.5</span><span> (</span>5.0
+											<td><span class="reviewStar">5.0</span><span> (</span>5.0
 												<span>점)</span></td>
 										</tr>
 										<tr>
@@ -348,7 +351,7 @@
 	      const target = document.querySelector(targetId);
 
 	      if (target) {
-	        const topPos = target.offsetTop - 200;
+	        const topPos = target.offsetTop - 300;
 	        window.scrollTo({
 	          top: topPos,
 	          behavior: 'smooth'
@@ -376,7 +379,7 @@
 	  window.addEventListener('scroll', function () {
 	    const scrollPosition = window.scrollY;
 	    tabs.forEach((tab, index) => {
-	      const top = tab.offsetTop -200;
+	      const top = tab.offsetTop -400;
 	      const bottom = top + tab.offsetHeight;
 	      if (scrollPosition >= top && scrollPosition < bottom) {
 	        activateTab(index);
