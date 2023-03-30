@@ -19,13 +19,13 @@ public class LikesServiceImpl implements LikesService {
 
 	@Autowired
 	private LikesRepository likesRep;
-	
+
 	@Autowired
 	private UserRepository userRep;
-	
+
 	@Autowired
 	private LectureRepository lecRep;
-	
+
 
 	/**
 	 * 찜하기
@@ -34,54 +34,55 @@ public class LikesServiceImpl implements LikesService {
 	public void insertLike(LikesDTO likeDto) {
 		User dbUser=userRep.findById(likeDto.getUserNo()).orElse(null);
 		Lecture dbLect = lecRep.findById(likeDto.getLectureNo()).orElse(null);
-		
+
 		Likes likes = toEntitiy(likeDto,dbUser,dbLect);
-		
+
 		likesRep.save(likes);
 	}	
-	
-	
+
+
 
 	/**
 	 * 찜취소
 	 */
-	
+
 	@Override
-	public void deleteLike(Long likeNo){
-		likesRep.deleteById(likeNo);
-		
+	public void deleteLike(Long lectureNo, Long userNo){
+		Likes like = likesRep.searchByLike(lectureNo, userNo);
+
+		likesRep.deleteById(like.getLikesNo());
 	}
 
 
 	/**
-	 * like 있는지 여부 검사 - 찬하트인지 빈하트인지 조회
+	 * like 있는지 여부 검사
 	 */
 	@Override
 	public int selectLike(LikesDTO likesDto) {
-		Likes dblike= likesRep.findById(likesDto.getLikesNo()).orElse(null);
-		if (dblike == null) {
-			return 0;
-		} else {
-			return 1;
-		}		
-		
-	}
-	
-	
 
+		Likes dblike= likesRep.searchByLike(likesDto.getLectureNo(), likesDto.getUserNo());
+		if (dblike == null) {
+			insertLike(likesDto);
+			return 1;
+		} else {
+			deleteLike(likesDto.getLectureNo(), likesDto.getUserNo());
+			return 0;
+		}
+
+	}
 
 	/**
-	 * 좋아요 리스트 불러오기
-	 * */
+	 * 유저 아이디별 좋아요 리스트(마이페이지에서 사용?)
+	 */
 	@Override
-	public List<Likes> selectLikesListByUserNo(String userNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Likes> selectId(LikesDTO likesDto) {
+
+		return likesRep.selectByUserId(likesDto.getLectureNo(), likesDto.getUserNo());
 	}
 
 
 
 
-	
+
 
 }
