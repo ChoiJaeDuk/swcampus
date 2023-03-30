@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,12 +52,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="i" begin="1" end="10">
+								<c:forEach var="l" items="${list }" varStatus="status">
+								<c:set var="TextValue" value="${l.communityRegDate }"/>
 									<tr>
-										<td>3</td>
-										<th><a href="#!">쉽고 빠르게 코딩하기~ 그 방법은?</a>
-											<p>테스트</p></th>
-										<td>2017.07.13</td>
+										<td>${status.count }</td>
+										<th><a href="#!">${l.communityTitle }</a>
+											<p>${l.userName }</p></th>
+										<td>${fn:substring(TextValue,0,10) }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -46,6 +46,7 @@ public interface CommunityService {
 			.communityContent(community.getCommunityContent())
 			.communityEditDate(community.getCommunityEditDate())
 			.communityCategory(community.getCommunityCategory())
+			.communityRegDate(community.getCommunityRegDate())
 			.replyList(community.getReplyList().stream()
 					.map(ReplyResponseDTO::new).collect(Collectors.toList()))	
 			.build();
