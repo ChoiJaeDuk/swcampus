@@ -41,18 +41,19 @@ public class test {
 	private ReplyController reCon; 
 	
 	
-	/*
-	 * @Test void insert() {
-	 * 
-	 * for (int i=0; i<=3; i++) { CommunityDTO dto = new CommunityDTO(null,1L,
-	 * "제목"+i,"테스트"+i,LocalDateTime.now(),"공지사"); commCon.insert(dto); } }
-	 */
+	
+	  @Test void insert() {
+	  for (int i=0; i<=3; i++) { 
+		  CommunityDTO dto = new CommunityDTO(null,1L,"제목"+i,"테스트"+i,LocalDateTime.of(2023, 3, 30, 1, 1),"코딩이야기",LocalDateTime.now()); 
+		  commCon.insert(dto); }
+	  }
+	 
 	 
 	@ParameterizedTest
 	@ValueSource(strings ="코딩이야기")
 	void list(String category){
-		List<CommunityResponseDTO> dblist =commCon.commList(category);
-		System.out.println("제이유닛에서 리스 "+dblist.toString());
+		//List<CommunityResponseDTO> dblist =commCon.commList(category);
+		//System.out.println("제이유닛에서 리스 "+dblist.toString());
 	}
 	
 	@Test

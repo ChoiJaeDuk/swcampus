@@ -22,6 +22,7 @@ public class CommunityServiceImpl implements CommunityService {
 	private final UserRepository userRep;
 	
 	
+	
 	@Override
 	public List<CommunityResponseDTO> communityList(String communityCategory) {
 		
@@ -34,9 +35,10 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public void insertCommunity(CommunityDTO community) {
-		User dbUser=userRep.getReferenceById(community.getUserNo());
-		Community comEntity =toEntity(community,dbUser);
 		
+		User dbUser=userRep.findById(community.getUserNo()).get();
+		Community comEntity =toEntity(community,dbUser);
+		System.out.println(comEntity);
 		communityRepository.save(comEntity);
 	}
 
