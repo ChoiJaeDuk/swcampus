@@ -89,10 +89,12 @@
 					<input type="text" name="communityTitle" class="inputBox" placeholder="제목을 입력해주세요" >
 					
 				 <label class="inputlabel">게시판</label> 
-					<select  class="inputBox" name="communityCategory" >
-						<option value="코딩이야기">코딩이야기</option>
-						<option value="진로이야기">진로이야기</option>
-						<option value="문의사항">문의게시판</option>
+				 
+				 <input type="hidden" value="" name="boardType">
+					<select  class="inputBox" onclick="getItem(this)" name="communityCategory" id="selectbox">
+						<option value="code" value2="codeBoard" >코딩이야기</option>
+						<option value="free" value2="freeBoard">진로이야기</option>
+						<option value="QA" value2="QABoard">문의게시판</option>
 					</select>
 					
 				<label class="inputlabel">작성자</label> 
@@ -106,7 +108,12 @@
 			</form>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+	function getItem(t){
+		let bt = $("select[name=communityCategory] > option:selected").attr("value2");
+		$('input[name=boardType]').attr('value',bt);
+	}
+	</script>
 	<script type="text/javascript">
 
 			$('#summernote').summernote({

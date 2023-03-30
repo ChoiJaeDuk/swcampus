@@ -3,6 +3,7 @@ package swcampus.mvc.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +19,14 @@ import swcampus.mvc.repository.UserRepository;
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 	
-	private final CommunityRepository communityRepository ; 
-	private final UserRepository userRep;
+	//private final CommunityRepository communityRepository ; 
+	//private final UserRepository userRep;
 	
+	@Autowired
+	private CommunityRepository communityRepository ; 
 	
+	@Autowired
+	private UserRepository userRep; 
 	
 	@Override
 	public List<CommunityResponseDTO> communityList(String communityCategory) {
@@ -54,7 +59,7 @@ public class CommunityServiceImpl implements CommunityService {
 		
 		CommunityResponseDTO dtoComm=toDTO(dbCommunity);
 		System.out.println("서비스에서 dtoComm"+dtoComm);
-		System.out.println("서비스에서 dtoComm"+dtoComm.getReplyList());
+		System.out.println("서비스에서 re"+dtoComm.getReplyList());
 		return dtoComm;
 	}
 

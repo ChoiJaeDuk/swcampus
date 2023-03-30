@@ -55,8 +55,11 @@
 								<c:forEach var="l" items="${list }" varStatus="status">
 								<c:set var="TextValue" value="${l.communityRegDate }"/>
 									<tr>
-										<td>${status.count }</td>
-										<th><a href="#!">${l.communityTitle }</a>
+										<td>${status.count }</td>										
+										<th>
+										<a href="/board/boardDetails?communityNo=${l.communityNo}">${l.communityTitle }
+											
+										</a>
 											<p>${l.userName }</p></th>
 										<td>${fn:substring(TextValue,0,10) }</td>
 									</tr>
