@@ -19,4 +19,8 @@ public class TestController {
 	   public void utill() {}
 	   @RequestMapping("/insertForm/{url}")
 	   public void insertForm() {}
+	   @RequestMapping("/mypage/{url}")
+	   public void mypage() {}
+	   @RequestMapping("/admin/{url}")
+	   public void admin() {}
 }
