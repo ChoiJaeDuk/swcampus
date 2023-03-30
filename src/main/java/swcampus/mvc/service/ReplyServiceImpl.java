@@ -33,6 +33,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public void insertReply(ReplyDTO replyDto) {
 		Community dbComm=communityRepository.getReferenceById(replyDto.getCommunityNo());
 		User dbUser=userRep.getReferenceById(replyDto.getUserNo());
+		
 		Reply reEntity=toEntity(replyDto, dbComm, dbUser);
 		
 		

@@ -1,14 +1,15 @@
 package swcampus.mvc.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
-import swcampus.mvc.domain.Community;
 import swcampus.mvc.dto.CommunityDTO;
 import swcampus.mvc.dto.CommunityResponseDTO;
 import swcampus.mvc.dto.ReplyResponseDTO;
@@ -18,45 +19,55 @@ import swcampus.mvc.service.CommunityService;
 @RequiredArgsConstructor
 public class CommunityController {
 	
-	private final CommunityService communityService;
+	@Autowired
+	private CommunityService communityService;
 	
-	@RequestMapping("/community/list")
-	public List<CommunityResponseDTO> commList(String category){
+	@RequestMapping("/board/{url}")
+	public void commList(String category, Model model){
 		List<CommunityResponseDTO> list=communityService.communityList(category);
-		 return list;
+		System.out.println(list);
+		model.addAttribute("list", list);
 		 
 	}
 	
-	@RequestMapping("/community/insert")
-	public String insert(CommunityDTO communityDTO){
+	@RequestMapping("/insertForm/boardInsert")
+	public void insertForm(Model model) {
+		//유저 정보 추가 
+		
+	}
+	
+	@RequestMapping("/board/insert")
+	public String insert(CommunityDTO communityDTO, String boardType){
+		
+		System.out.println(boardType);//codeBoard
+		
 		communityService.insertCommunity(communityDTO);
-		return "redirect:/community/list";
+		String ca=communityDTO.getCommunityCategory();
+		return "redirect:/board/"+boardType+"?category="+ca;
 				
 	}
 	
-	@RequestMapping("/community/update")
+	@RequestMapping("/board/update")
 	public void update(CommunityDTO communityDTO){
 		communityService.updateCommunity(communityDTO);
 		System.out.println("컨트롤러 "+communityDTO);
 	}
 	
-	@RequestMapping("/community/delete")
+	@RequestMapping("/board/delete")
 	public void delete(Long commNo){
 		communityService.deleteCommunity(commNo);
 	}
 	
-	@RequestMapping("/community/read/{cno}")
-	public void read(@PathVariable Long cno  ) {
+	@RequestMapping("/board/boardDetails")
+	public void read(Long communityNo,Model model ) {
 		
-		CommunityResponseDTO dbCommunity=communityService.selectByCommunityId(cno,true);
+		CommunityResponseDTO dbCommunity=communityService.selectByCommunityId(communityNo,true);
 		List<ReplyResponseDTO> replyList=dbCommunity.getReplyList();
-		System.out.println("컨트롤러에서 dbCommunity"+dbCommunity);
-		System.out.println("컨트롤러에서 replyList"+replyList);
-		//communityService.countUpdate(cno);
+		//communityService.countUpdate(communityNo);
 
 
-		//model.addAttribute("replyList", replyList);
-		//model.addAttribute("community", dbCommunity);
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("community", dbCommunity);
 		
 	}
 }

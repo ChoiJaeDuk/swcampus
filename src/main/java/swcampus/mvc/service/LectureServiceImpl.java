@@ -92,39 +92,5 @@ public class LectureServiceImpl implements LectureService {
 
 
 
-	@Override
-	public int isLike(LikesDTO likesDto) {
-
-		Likes dbLike = likeService.selectLike(likesDto.getLikesNo());
-		if (dbLike == null) {
-			increaseLikeNo(likesDto);
-		} else {
-			decreaseLikeNo(likesDto);
-		}
-		return selectByLectureNo(likesDto.getLikesNo()).getLectureLikeIs();
-		//(likes.getLikesNo()).getBoardLikeNo();
-
-	}
-
-	@Override
-	public void increaseLikeNo(LikesDTO likesDto) {
-		likeService.insertLike(likesDto);
-		Lecture dbLecture = lectureRep.findById(likesDto.getLectureNo()).orElse(null);
-		
-		dbLecture.setLectureLikeIs(dbLecture.getLectureLikeIs() + 1);		
-	}
-
-	@Override
-	public void decreaseLikeNo(LikesDTO likesDto) {
-		likeService.deleteLike(likesDto.getLikesNo());
-		
-		Lecture dbLecture = lectureRep.findById(likesDto.getLectureNo()).orElse(null);
-		
-		dbLecture.setLectureLikeIs(dbLecture.getLectureLikeIs() - 1);		
-
-
-	}
-
-
 
 }

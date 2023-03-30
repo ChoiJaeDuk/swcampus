@@ -15,7 +15,7 @@ public class LectureDTO {
 	
 	private Long LectureNo;
 	
-	private Long userNo;
+	private Long userNo;//어드민
 	
 	private String lectureAgency;
 
