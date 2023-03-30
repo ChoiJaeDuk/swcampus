@@ -14,12 +14,14 @@ import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.dto.LectureResponseDTO;
 import swcampus.mvc.dto.LikesDTO;
 import swcampus.mvc.service.LectureService;
+import swcampus.mvc.service.LikesService;
 
 @Controller
 public class LectureController {
 	
 	@Autowired
 	private LectureService lectureService;
+	private LikesService likeService;
 
 	
 	/**
@@ -102,6 +104,16 @@ public class LectureController {
 		int likesedCount = lectureService.isLike(LikesDTO);
 		return likesedCount;	
 	}
+	
+	  /**좋아요 기능 눌렀을 때 좋아요가 변경되는 기능
+		  */
+		@RequestMapping("/lecture/likes")
+		@ResponseBody
+		public int selectLike(Long likesNo) {
+			int isLikes = likeService.selectLike(likesNo);
+			return isLikes.;	
+		}
+		
 	
 	
 	

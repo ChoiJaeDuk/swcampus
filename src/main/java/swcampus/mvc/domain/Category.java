@@ -25,11 +25,11 @@ import lombok.ToString;
 @ToString
 public class Category {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long categoryNo;
-	
-	@Column(nullable = false)
-	private String categoryName;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long categoryNo;
+   
+   @Column(nullable = false)
+   private String categoryName;
 
 }

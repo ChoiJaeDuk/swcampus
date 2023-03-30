@@ -80,8 +80,6 @@ public class Lecture {
 	@JoinColumn(name = "category_no")
 	private Category category;//be,fe,ai...
 	
-	@Column(nullable = false)
-	private int lectureLikeIs;
 
 	}
 	
