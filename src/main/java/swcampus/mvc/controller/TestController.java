@@ -11,12 +11,13 @@ public class TestController {
 	      System.out.println("HomeController의 index.....");
 	      return "/main";//
 	   }
-	   @RequestMapping("/details/{url}")
-	   public void url() {}
-	   @RequestMapping("/board/{url}")
-	   public void board() {}
-	   @RequestMapping("/utill/{url}")
-	   public void utill() {}
-	   @RequestMapping("/insertForm/{url}")
-	   public void insertForm() {}
+/*
+ * @RequestMapping("/details/{url}") public void url() {}
+ * 
+ * @RequestMapping("/board/{url}") public void board() {}
+ * 
+ * @RequestMapping("/utill/{url}") public void utill() {}
+ * 
+ * @RequestMapping("/insertForm/{url}") public void insertForm() {} }
+ */
 }

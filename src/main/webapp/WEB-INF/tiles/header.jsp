@@ -255,9 +255,9 @@ Roboto
 				<li><a href="javascript:;" onclick="addCategoryClass(this);">커뮤니티</a>
 					<ul class="hide categoryClass">
 						<li><a href="/board/noticeBoard">공지사항</a></li>
-						<li><a href="/board/QABoard">문의사항</a></li>
-						<li><a href="/board/freeBoard">진로이야기</a></li>
-						<li><a href="/board/codeBoard">코딩이야기</a></li>
+						<li><a href="/board/QABoard?category=문의사항">문의사항</a></li>
+						<li><a href="/board/freeBoard?category=진로이야기">진로이야기</a></li>
+						<li><a href="/board/codeBoard?category=코딩이야기">코딩이야기</a></li>
 					</ul></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
