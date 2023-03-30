@@ -14,34 +14,34 @@ import java.util.List;
 
 public interface NoticeService {
 
-    void insertNotice(NoticeDto noticeDto);
+    Long insertNotice(NoticeDto noticeDto);
 
     List<NoticeDto> findAll();
 
     NoticeDto findNotice(Long id);
 
 
-    void updateNotice(NoticeDto noticeDto);
+    void updateNotice(NoticeDto notice, NoticeDto noticeDto);
 
 
 
-    default Notice toEntity(NoticeDto noticeDto, User user) {
-        return Notice.builder()
-                .user(user)
-                .noticeTitle(noticeDto.getNoticeTitle())
-                .noticeContent(noticeDto.getNoticeContent())
-                .noticeEditDate(LocalDate.now())
-                .build();
-    }
-
-
-
-    default NoticeDto toDto(Notice notice) {
-        return NoticeDto.builder()
-                .noticeTitle(notice.getNoticeTitle())
-                .noticeContent(notice.getNoticeContent())
-                .noticeEditDate(LocalDate.now())
-                .build();
-    }
+//    default Notice toEntity(NoticeDto noticeDto) {
+//        return Notice.builder()
+//                .noticeTitle(noticeDto.getNoticeTitle())
+//                .noticeContent(noticeDto.getNoticeContent())
+//                .noticeEditDate(LocalDate.now())
+//                .noticeViewCount(noticeDto.getNoticeViewCount())
+//                .build();
+//    }
+//
+//
+//
+//    default NoticeDto toDto(Notice notice) {
+//        return NoticeDto.builder()
+//                .noticeTitle(notice.getNoticeTitle())
+//                .noticeContent(notice.getNoticeContent())
+//                .noticeEditDate(LocalDate.now())
+//                .build();
+//    }
 
 }

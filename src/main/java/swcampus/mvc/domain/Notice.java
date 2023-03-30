@@ -2,6 +2,7 @@ package swcampus.mvc.domain;
 
 import java.time.LocalDate;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,36 +23,29 @@ import swcampus.mvc.dto.notice.NoticeDto;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Notice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long noticeNo;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_no")
-	private User user;
-	
+
 	private String noticeTitle;
 	
 	private String noticeContent;
 
-	@CreationTimestamp
 	private LocalDate noticeEditDate;
 	
 	private int noticeViewCount;
 
-	// == 생성 메서드 == //
-	public void createNotice(NoticeDto noticeDto) {
-		this.user = user;
-		this.noticeTitle = noticeTitle;
-		this.noticeContent = noticeContent;
+	// == update == //
+	public void updateNotice(NoticeDto noticeDto) {
+		this.noticeTitle = noticeDto.getNoticeTitle();
+		this.noticeContent = noticeDto.getNoticeContent();
 		this.noticeEditDate = LocalDate.now();
-
 	}
-	
+
 }

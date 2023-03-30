@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class NoticeServiceImpl implements NoticeService{
+public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeRepository noticeRepository;
     private final UserRepository userRepository;
@@ -27,10 +27,12 @@ public class NoticeServiceImpl implements NoticeService{
      */
     @Override
     @Transactional
-    public void insertNotice(NoticeDto noticeDto) {
-        User user = userRepository.getReferenceById(noticeDto.getNoticeNo());
-        Notice notice = toEntity(noticeDto, user);
-        noticeRepository.save(notice);
+    public Long insertNotice(NoticeDto noticeDto) {
+        NoticeDto notice = new NoticeDto(noticeDto.getNoticeTitle(), noticeDto.getNoticeContent());
+        Notice foundNotice = notice.transformToUser(notice);
+        noticeRepository.save(foundNotice);
+
+        return notice.getNoticeNo();
     }
 
     /**
@@ -38,17 +40,20 @@ public class NoticeServiceImpl implements NoticeService{
      */
     @Override
     public NoticeDto findNotice(Long id) {
-        Notice referenceById = noticeRepository.getReferenceById(id);
-        log.info("referenceById={}", referenceById);
-        return toDto(referenceById);
+        Notice notice = noticeRepository.getReferenceById(id);
+        NoticeDto noticeDto = new NoticeDto();
+        NoticeDto foundNoticeDto = noticeDto.transformToUseDto(notice);
+
+        return foundNoticeDto;
 
     }
 
     @Override
     public List<NoticeDto> findAll() {
+        NoticeDto noticeDto = new NoticeDto();
         List<Notice> notice = noticeRepository.findAll();
         List<NoticeDto> collect = notice.stream()
-                                        .map(n -> toDto(n))
+                                        .map(n -> noticeDto.transformToUseDto(n))
                                         .collect(Collectors.toList());
 
         return collect;
@@ -57,9 +62,8 @@ public class NoticeServiceImpl implements NoticeService{
 
     @Override
     @Transactional
-    public void updateNotice(NoticeDto noticeDto) {
-        Notice notice = noticeRepository.getReferenceById(noticeDto.getNoticeNo());
-        notice.createNotice(noticeDto);
-
+    public void updateNotice(NoticeDto notice, NoticeDto noticeDto) {
+        Notice foundNotice = noticeRepository.getReferenceById(notice.getNoticeNo());
+        foundNotice.updateNotice(noticeDto);
     }
 }
