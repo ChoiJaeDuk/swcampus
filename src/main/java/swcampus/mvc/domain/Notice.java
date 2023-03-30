@@ -13,21 +13,17 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import swcampus.mvc.dto.notice.NoticeDto;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 public class Notice {
@@ -40,16 +36,22 @@ public class Notice {
 	@JoinColumn(name = "user_no")
 	private User user;
 	
-	@Column(nullable = false)
 	private String noticeTitle;
 	
-	@Lob
 	private String noticeContent;
 
 	@CreationTimestamp
-	private LocalDate notieEditDate;
+	private LocalDate noticeEditDate;
 	
-	@Column(nullable = false)
 	private int noticeViewCount;
+
+	// == 생성 메서드 == //
+	public void createNotice(NoticeDto noticeDto) {
+		this.user = user;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeEditDate = LocalDate.now();
+
+	}
 	
 }

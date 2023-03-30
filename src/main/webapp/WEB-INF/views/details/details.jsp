@@ -183,7 +183,7 @@
 			<span class="LectureTitle">Kosta Spring Cloud 246기</span>
 		</div>
 
-		<div style="width: 100%; height: 300px; background-color: #EFF5FF">
+		<div style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png');   background-size: cover; ">
 			<div style="width: 1200px; margin: 0 auto;">
 				<div style="position: relative; top: 70px;">
 					<div class="LectureContentsTitle">

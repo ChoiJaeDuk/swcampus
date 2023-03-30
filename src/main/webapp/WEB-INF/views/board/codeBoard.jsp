@@ -31,7 +31,7 @@
 									<button type="submit" class="btn btn-dark">검색</button>
 								</div>
 							</form>
-							<a href="#"
+							<a href="/insertForm/boardInsert?boardType=code"
 								style="margin-right:110px; float: right; font-weight: 500; font-size: 16px; line-height: 30px; color: #ffffff; padding: 5px 10px; background-color: #2D65F2; text-decoration: none;">게시글
 								작성하러가기 <i class="fa-solid fa-chevron-right fa-beat-fade"></i>
 							</a>
@@ -51,12 +51,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="i" begin="1" end="10">
+								<c:forEach var="l" items="${list }" varStatus="status">
 									<tr>
-										<td>3</td>
-										<th><a href="#!">쉽고 빠르게 코딩하기~ 그 방법은?</a>
-											<p>테스트</p></th>
-										<td>2017.07.13</td>
+										<td>${status.count }</td>
+										<th><a href="#!">${l.communityTitle }</a>
+											<p>${l.userName }</p></th>
+										<td>${l.communityRegDate }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

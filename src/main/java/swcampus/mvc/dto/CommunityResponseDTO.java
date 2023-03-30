@@ -20,7 +20,10 @@ public class CommunityResponseDTO {
 		
 	private LocalDateTime communityEditDate;
 	
+	private LocalDateTime communityRegDate;
+	
 	private String communityCategory;
+	
 	
 	private List<ReplyResponseDTO> replyList;
 	

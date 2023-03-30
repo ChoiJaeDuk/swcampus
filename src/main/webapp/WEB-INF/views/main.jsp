@@ -45,7 +45,6 @@ button[type="submit"] {
 
 .search-bar>form {
 	width: 795px;
-	background-color: aqua;
 	height: 60px;
 	margin: 0 auto;
 	float: left;
@@ -128,7 +127,7 @@ button[type="submit"] {
 			<div class="best-lecture">
 				<!-- 반복문시작 -->
 				<c:forEach var="i" begin="1" end="8">
-					<div class=" lecture-card">
+					<div class=" lecture-card" onclick="location.href='/details/details?lecture=강의명'">
 						<div class="lecture">
 							<p class="association">한국 소프트웨어협회</p>
 							<div class="lectureTitle">지멘스 지역혁신프로젝트 기업연계형 sw직무교육 1기</div>
