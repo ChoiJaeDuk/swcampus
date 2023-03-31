@@ -137,6 +137,7 @@
 	text-align: left;
 	clear: both;
 }
+
 .wapperBlur {
   filter: blur(5px); /* 블러 처리 */
   pointer-events: none; /* 마우스 이벤트 무시 */
