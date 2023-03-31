@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,10 +50,15 @@ public class LectureController {
 	 * 
 	 * @param lectureNo
 	 */
-	@RequestMapping("/lecture/select/{lectureNo}")
-	public void selectLec(Long lectureNo) {
+	@RequestMapping("/details/details")
+	public void selectLec(Long lectureNo,Model model,Long userNo) {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
-		System.out.println(dto);
+
+		//int confirm=likeService.selectLike(lectureNo,userNo);
+		//System.out.println("렉 컨 컨펌= "+confirm);
+		
+		model.addAttribute("lecture", dto);
+		//model.addAttribute("confirm", confirm);
 	}
 
 	/**
@@ -76,10 +82,11 @@ public class LectureController {
 
 	/**
 	 * 강의 전체조회
+	 * 
 	 */
-	@RequestMapping("/lecture/list")
+	@RequestMapping("/de/list")
 	public List<LectureResponseDTO> LectureList() {
-
+		
 		return null;
 	}
 
@@ -111,5 +118,11 @@ public class LectureController {
 			 * 
 			 * 
 			 */
+	@RequestMapping("/d")
+	public void selectLike() {
+		System.out.println(11);
+		}
+	
+	
 
 }// Class LectureController 끝

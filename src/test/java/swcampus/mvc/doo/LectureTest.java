@@ -1,7 +1,10 @@
 package swcampus.mvc.doo;
 
+import java.time.LocalDateTime;
+
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,9 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import swcampus.mvc.controller.LectureController;
+import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.repository.LectureRepository;
+import swcampus.mvc.service.LectureService;
 
 @WebAppConfiguration
 @SpringBootTest
@@ -24,13 +29,16 @@ public class LectureTest {
 	@Autowired
 	private LectureController lectureCon;
 	
-	/*
+	@Autowired
+	private LectureService lecSer;
+	
+	
 
 	@Test
 	void lecin(){
 		for (int i =0; i<=2;i++) {
-			LectureDTO dto = new LectureDTO(3L, "KOSTA", "취업자", "오프라인", "안녕", "지현", "ai", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",3L);
-		lectureCon.lectureInsert(dto);
+			LectureDTO dto = new LectureDTO(null,3L,  "KOSTA", "취업자", "ai","제목"+i, "지현쌤", "ai과정", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",2L,1);
+			lecSer.insertLecture(dto);
 		}
 	}
 
@@ -41,7 +49,7 @@ public class LectureTest {
 	 void selectLec(Long lectureNo) {
 		lectureCon.selectLec(lectureNo);
 	}
-	 */
+	 
 	
 	@ParameterizedTest
 	@ValueSource(longs = 9L)
@@ -59,7 +67,10 @@ public class LectureTest {
 	   }
 	    */
 
-	 
+	@Test
+	void sdddd() {
+		lecSer.selectAll();
+	}
 	
 
 	

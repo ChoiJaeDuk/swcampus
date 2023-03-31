@@ -1,6 +1,7 @@
 package swcampus.mvc.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import swcampus.mvc.domain.Category;
 import swcampus.mvc.domain.Lecture;
@@ -15,7 +16,7 @@ public interface LectureService {
 		/**
 		 * 전체 강의검색
 		 * */
-		List<Lecture> selectAll();
+		List<LectureResponseDTO> selectAll();
 		
 		
 		/**
@@ -48,6 +49,7 @@ public interface LectureService {
 		default  LectureResponseDTO toDto(Lecture lec) {
 			
 			return LectureResponseDTO.builder()
+					.lectureNo(lec.getLectureNo())
 					.lectureAgency(lec.getLectureAgency())
 					.lectureTarget(lec.getLectureTarget())
 					.lectureMethod(lec.getLectureMethod())

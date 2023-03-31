@@ -180,9 +180,9 @@
  -->
 	<div class="container-wapper">
 		<div class="container" style="margin-bottom: 20px; margin-top: 120px;">
-			<span class="LectureTitle">Kosta Spring Cloud 246기</span>
+			<span class="LectureTitle">${lecture.lectureTitle}</span>
 		</div>
-
+		
 		<div style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png');   background-size: cover; ">
 			<div style="width: 1200px; margin: 0 auto;">
 				<div style="position: relative; top: 70px;">
@@ -193,10 +193,9 @@
 						<span>2023.06</span><span> ~ </span><span>2023.11</span>
 					</div>
 
-					<div
-						style="width: 1200px; margin: 0 auto; text-align: center; margin-top: 20px;">
+					<div style="width: 1200px; margin: 0 auto; text-align: center; margin-top: 20px;">
 						<button class="LectureBtn">홈페이지바로가기</button>
-						<button class="LectureBtn" id="like-button">
+						<button class="LectureBtn" id="like-button" >
 							찜하기 <i class="fa fa-star-o" id="like"></i>
 						</button>
 					</div>
@@ -320,22 +319,53 @@
 			</div>
 		</div>
 	</div>
-
-	<script type="text/javascript">
+	
+	<!-- <script type="text/javascript">
 	/* 즐겨찾기 */
 		const button = document.getElementById("like-button");
 		const icon = document.getElementById("like");
-
+		
 		button.addEventListener("click", function() {
+			//없을때
 			if (icon.classList.contains("fa-star-o")) {
 				icon.classList.remove("fa-star-o");
 				icon.classList.add("fa-star");
-			} else {
+				$.ajax({
+		            type: 'post',
+		            url: '/like/select/',
+		            data : {
+		            	lectureNo : "lectureNo",
+		            	userNo :' userNo"
+		        	},
+		            contentType: 'application/json; charset=utf-8'
+		        }).done(function(data){
+		            alert("성공")
+		        }).fail(function(error){
+		            alert(JSON.stringify(error));
+		        });
+				
+				
+				
+			} else {//채워져 있을때 
 				icon.classList.remove("fa-star");
 				icon.classList.add("fa-star-o");
 			}
 		});
+	</script> -->
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function({
+		let target = {"lectureNo": "${lecture.lectureNo}", "userNo":"${lecture.userNo}"}
+		console.log(target)
+		$(function(){
+			if()
+		})//첫 끝
+		
+	})//docu 끝
 	</script>
+	
+	
 
 
 	<script type="text/javascript">

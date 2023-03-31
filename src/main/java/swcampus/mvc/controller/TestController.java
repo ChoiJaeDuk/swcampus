@@ -1,14 +1,42 @@
 package swcampus.mvc.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import swcampus.mvc.dto.LectureResponseDTO;
+import swcampus.mvc.dto.LikesDTO;
+import swcampus.mvc.service.LectureService;
+import swcampus.mvc.service.LikesService;
 @Controller
 @RequestMapping
 public class TestController {
+	@Autowired
+	private LectureService lecService;
+	
+	@Autowired
+	private LikesService likeService;
 
 	   @RequestMapping("/")
-	   public String index() {
+	   public String index(Model model) {
 	      System.out.println("HomeController의 index.....");
+	      List<LectureResponseDTO> mainList=  lecService.selectAll();
+	      System.out.println(mainList);
+	      
+	      //임의값 
+	      int likesConfirm=likeService.selectLike(9L,3L);
+	      System.out.println(likesConfirm);
+	      //임의값 
+	      
+	      
+	      model.addAttribute("mainList", mainList);
+	      model.addAttribute("likesConfirm", likesConfirm);
+	      
+	      //임의값-시큐리티 들어오면 유저 정보 전달
+	      model.addAttribute("user", 3L);
 	      return "/main";//
 	   }
 /*

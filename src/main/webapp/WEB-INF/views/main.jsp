@@ -126,11 +126,11 @@ button[type="submit"] {
 		<div class="best-contents">
 			<div class="best-lecture">
 				<!-- 반복문시작 -->
-				<c:forEach var="i" begin="1" end="8">
-					<div class=" lecture-card" onclick="location.href='/details/details?lecture=강의명'">
+				<c:forEach var="main" begin="1" end="10" items="${mainList }">
+					<div class=" lecture-card" onclick="location.href='/details/details?lectureNo=${main.lectureNo}&userNo=${user}'">
 						<div class="lecture">
 							<p class="association">한국 소프트웨어협회</p>
-							<div class="lectureTitle">지멘스 지역혁신프로젝트 기업연계형 sw직무교육 1기</div>
+							<div class="lectureTitle">${main.lectureTitle }// ${likesConfirm}</div>
 							<div>
 								<div class="period">
 									<span>2023-02-27</span><span>~</span><span>2023-05-23</span>
