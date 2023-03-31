@@ -178,7 +178,8 @@ Roboto
 				</div>
 				<div class="join"
 					style="width: 49%; position: relative; float: right; text-align: center;">
-					<a href="/utill/join" style="text-decoration: none; color: #222222">회원가입</a>
+					<!-- <a href="/utill/join" style="text-decoration: none; color: #222222">회원가입</a> -->
+					<a href="/admin/LecturesList" style="text-decoration: none; color: #222222">관리자</a>
 				</div>
 			</div>
 		</div>
@@ -259,7 +260,7 @@ Roboto
 						<li><a href="/board/freeBoard?category=free">진로이야기</a></li>
 						<li><a href="/board/codeBoard?category=code">코딩이야기</a></li>
 					</ul></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="/mypage/profile">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
