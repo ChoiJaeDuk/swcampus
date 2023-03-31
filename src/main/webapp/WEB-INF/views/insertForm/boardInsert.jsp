@@ -84,36 +84,38 @@
 	<div class="container-wapper">
 		<div class="container" style="margin: 100px auto 150px;">
 			<div class="titleBox">게시글 작성하기</div>
-			<form method="post">
-				<label class="inputlabel">제목</label> <input type="text"
-					class="inputBox" placeholder="제목을 입력해주세요"> <label class="inputlabel">게시판</label> 
-					<select  class="inputBox" id="boardType">
-						<option value="code">코드게시판</option>
-						<option value="free">자유게시판</option>
-						<option value="QA">문의게시판</option>
-						<option value="notice">공지게시판</option>
+			<form method="post" action="${pageContext.request.contextPath}/board/insert">
+				<label class="inputlabel">제목</label>
+					<input type="text" name="communityTitle" class="inputBox" placeholder="제목을 입력해주세요" >
+					
+				 <label class="inputlabel">게시판</label> 
+				 
+				 <input type="hidden" value="" name="boardType">
+					<select  class="inputBox" onclick="getItem(this)" name="communityCategory" id="selectbox">
+						<option value="code" value2="codeBoard" >코딩이야기</option>
+						<option value="free" value2="freeBoard">진로이야기</option>
+						<option value="QA" value2="QABoard">문의게시판</option>
 					</select>
-				<label class="inputlabel">작성자</label> <input type="text"
-					disabled="disabled" value="작성자ID" class="inputBox">
+					
+				<label class="inputlabel">작성자</label> 
+				 <input type="text" value=1 class="inputBox" name="userNo" id="userNo"> 
+				 
 				<div style="clear: both; padding: 1px 0px 20px; width: 99%; margin:5px auto 0px;">
-					<textarea id="summernote" name="editordata"></textarea>
+					<textarea id="summernote" name="communityContent" ></textarea>
 				</div>
 				<button class="formbutton" style="float: left; background-color:#EFF5FF; color: #2D65F2; ">목록</button>
-				<button class="formbutton" style="float: right;">작성</button>
+				<button class="formbutton" style="float: right;" type="submit">작성</button>
 			</form>
 		</div>
 	</div>
-
-<script>
-  // 현재 URL에서 boardType 값을 가져와서 select 태그에서 해당 값을 선택된 상태로 설정
-  var urlParams = new URLSearchParams(window.location.search);
-  var boardType = urlParams.get('boardType');
-  var selectBox = document.querySelector('#boardType');
-  selectBox.value = boardType;
-</script>
-
 	<script type="text/javascript">
-		$(function() {
+	function getItem(t){
+		let bt = $("select[name=communityCategory] > option:selected").attr("value2");
+		$('input[name=boardType]').attr('value',bt);
+	}
+	</script>
+	<script type="text/javascript">
+
 			$('#summernote').summernote({
 				height : 500,
 				focus : true,
@@ -122,11 +124,11 @@
 				callbacks : {
 					onImageUpload : function(files) {
 						sendFile(files[0], this);
+
 					}
 				}
-
-			});
 		});
+		
 		function sendFile(file, editor) {
 			var data = new FormData();
 			data.append("file", file);
@@ -141,6 +143,9 @@
 				success : function(img) {
 					console.log(img.url)
 					$(editor).summernote("insertImage", img.url);
+					//alert($("textarea[name=communityContent]").val());
+					//console.log($(editor).summernote('editor.insertText',$("textarea[name=communityContent]").val()))
+					
 				}
 			});
 		};

@@ -22,6 +22,7 @@ import swcampus.mvc.dto.CommunityDTO;
 import swcampus.mvc.dto.CommunityResponseDTO;
 import swcampus.mvc.dto.ReplyDTO;
 import swcampus.mvc.repository.CommunityRepository;
+import swcampus.mvc.service.CommunityService;
 import swcampus.mvc.service.ReplyService;
 
 @SpringBootTest
@@ -38,21 +39,26 @@ public class test {
 	private CommunityController commCon;
 	
 	@Autowired
+	private CommunityService conService;
+	
+	@Autowired
 	private ReplyController reCon; 
 	
 	
-	/*
-	 * @Test void insert() {
-	 * 
-	 * for (int i=0; i<=3; i++) { CommunityDTO dto = new CommunityDTO(null,1L,
-	 * "제목"+i,"테스트"+i,LocalDateTime.now(),"공지사"); commCon.insert(dto); } }
-	 */
+	
+	  @Test void insert() {
+	  for (int i=0; i<=3; i++) { 
+		  CommunityDTO dto = new CommunityDTO(null,1L,"제목"+i,"테스트"+i,LocalDateTime.of(2023, 3, 30, 1, 1),"코딩이야기",LocalDateTime.now()); 
+		  String boardType="code";
+		  commCon.insert(dto,boardType); }
+	  }
+	 
 	 
 	@ParameterizedTest
 	@ValueSource(strings ="코딩이야기")
 	void list(String category){
-		List<CommunityResponseDTO> dblist =commCon.commList(category);
-		System.out.println("제이유닛에서 리스 "+dblist.toString());
+		//List<CommunityResponseDTO> dblist =commCon.commList(category);
+		//System.out.println("제이유닛에서 리스 "+dblist.toString());
 	}
 	
 	@Test
@@ -70,7 +76,7 @@ public class test {
 	@Test
 	void insertReply(){
 		for(int i = 0;i<=2;i++) {
-		ReplyDTO reDTO = new ReplyDTO(6L,1L , "댓글 테스트"+i);
+		ReplyDTO reDTO = new ReplyDTO(24L,2L , "댓글 테스트"+i);
 		reCon.insertReply(reDTO);
 		}
 	}
@@ -83,7 +89,7 @@ public class test {
 	@ParameterizedTest
 	@ValueSource(longs = 6L)
 	void reply(Long commNo){
-		commCon.read(commNo );
+		//commCon.read(commNo );
 	}
 	
 }

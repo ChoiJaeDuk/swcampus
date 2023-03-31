@@ -42,27 +42,6 @@ public interface LectureService {
 	     */
 		void updateLecture(LectureDTO lectureDto);
 		
-	
-		
-		 /**
-	     * 좋아요가 됐는지 
-	     * */
-	    int isLike(LikesDTO likesDto);
-
-	    
-	    
-	    /**
-	     * 좋아요 늘리기
-	     * : Long lectureNo
-	     * */
-	    void increaseLikeNo(LikesDTO likesDto);
-	    
-	    /**
-	     * 좋아요 줄이기
-	     * : Long lectureNo
-	     * */
-	    void decreaseLikeNo(LikesDTO likesDto);
-	    
 		
 		
 		

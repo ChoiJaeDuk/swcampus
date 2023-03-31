@@ -68,12 +68,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="i" begin="1" end="10">
+								<c:forEach var="notice" begin="1" end="10" items="${notices}">
 									<tr>
 										<td>3</td>
-										<th><a href="#!">쉽고 빠르게 코딩하기~ 그 방법은?</a>
-											<p>테스트</p></th>
-										<td>2017.07.13</td>
+										<th><a href="/notice/insert">${notice.noticeTitle}</a>
+											<p>${notice.noticeContent}</p></th>
+										<td>${notice.noticeEditDate}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

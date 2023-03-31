@@ -22,7 +22,7 @@ public interface LikesService {
 	/**
 	 * like 있는지 여부 검사
 	 */
-	Likes selectLike(Long likesNo);
+	int selectLike(LikesDTO likesDto);
 
 	/**
 	 * 좋아요 리스트 불러오기

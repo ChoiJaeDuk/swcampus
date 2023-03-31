@@ -2,6 +2,7 @@ package swcampus.mvc.domain;
 
 import java.time.LocalDate;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,43 +14,38 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import swcampus.mvc.dto.notice.NoticeDto;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Notice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long noticeNo;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_no")
-	private User user;
-	
-	@Column(nullable = false)
+
 	private String noticeTitle;
 	
-	@Lob
 	private String noticeContent;
 
-	@CreationTimestamp
-	private LocalDate notieEditDate;
+	private LocalDate noticeEditDate;
 	
-	@Column(nullable = false)
 	private int noticeViewCount;
-	
+
+	// == update == //
+	public void updateNotice(NoticeDto noticeDto) {
+		this.noticeTitle = noticeDto.getNoticeTitle();
+		this.noticeContent = noticeDto.getNoticeContent();
+		this.noticeEditDate = LocalDate.now();
+	}
+
 }

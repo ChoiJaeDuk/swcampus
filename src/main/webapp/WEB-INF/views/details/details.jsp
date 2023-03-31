@@ -64,7 +64,7 @@
 .tab1contents {
 	width: 1200px;
 	min-height: 400px;
-	overflow:hidden;
+	overflow: hidden;
 	margin: 0 auto 200px;
 	position: relative;
 }
@@ -136,6 +136,7 @@
 	margin: 5px;
 	margin-bottom: 15px;
 }
+
 .reviewContnetInfo table {
 	margin: 20px 32px;
 	text-align: left;
@@ -165,7 +166,8 @@
 	color: #ffffff;
 	overflow: auto;
 }
-.reviewStar{
+
+.reviewStar {
 	color: #FFC700;
 }
 </style>
@@ -183,7 +185,8 @@
 			<span class="LectureTitle">Kosta Spring Cloud 246기</span>
 		</div>
 
-		<div style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png');   background-size: cover; ">
+		<div
+			style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png'); background-size: cover;">
 			<div style="width: 1200px; margin: 0 auto;">
 				<div style="position: relative; top: 70px;">
 					<div class="LectureContentsTitle">
@@ -275,7 +278,9 @@
 					<div style="width: 100%; margin: 0 auto; height: 60px;">
 						<div
 							style="font-weight: 700; font-size: 24px; line-height: 35px; color: #2D65F2;">
-							리뷰모음  <span style="font-size: 20px;"  >[평균별점: </span><span class="reviewStar"  style="font-size: 20px;">5.0</span><span style="font-size: 20px;">점]</span> <a href="#"
+							리뷰모음 <span style="font-size: 20px;">[평균별점: </span><span
+								class="reviewStar" style="font-size: 20px;">5.0</span><span
+								style="font-size: 20px;">점]</span> <a href="#"
 								style="float: right; font-weight: 500; font-size: 16px; line-height: 29px; color: #ffffff; padding: 2px 10px; background-color: #2D65F2; text-decoration: none; border-radius: 20px;">리뷰작성하러가기
 								<i class="fa-solid fa-chevron-right fa-beat-fade"></i>
 							</a>
@@ -317,6 +322,60 @@
 
 					</div>
 				</div>
+
+
+
+				<!-- 비회원 -->
+				<div class="review tab1contents" id="review" style=" filter: blur(10px);  pointer-events: none;">
+					<div style="width: 100%; margin: 0 auto; height: 60px;">
+						<div
+							style="font-weight: 700; font-size: 24px; line-height: 35px; color: #2D65F2;">
+							리뷰모음 <span style="font-size: 20px;">[평균별점: </span><span
+								class="reviewStar" style="font-size: 20px; color: #ffffff;">5.0</span><span
+								style="font-size: 20px;">점]</span> <a href="#"
+								style="float: right; font-weight: 500; font-size: 16px; line-height: 29px; color: #ffffff; padding: 2px 10px; background-color: #2D65F2; text-decoration: none; border-radius: 20px;">리뷰작성하러가기
+								<i class="fa-solid fa-chevron-right fa-beat-fade"></i>
+							</a>
+						</div>
+					</div>
+
+					<div style="width: 1200px; margin: 0 auto;">
+
+						<c:forEach var="i" begin="1" end="6">
+							<div class="reviewContnet">
+								<div class="reviewContnetInfo">
+									<table>
+										<tr>
+											<th>과정명</th>
+											<td>Kosta Spring Cloud 246기</td>
+										</tr>
+										<tr>
+											<th>닉네임</th>
+											<td>코딩천재</td>
+										</tr>
+										<tr>
+											<th>별점</th>
+											<td><span class="reviewStar" style="color: #ffffff;">5.0</span><span> (</span>5.0
+												<span>점)</span></td>
+										</tr>
+										<tr>
+											<th>날짜</th>
+											<td>2023.03.09 ~ 2023.03.09</td>
+										</tr>
+									</table>
+								</div>
+
+								<div class="reviewDetail">
+									정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요정말너무좋았어요
+									정말너무좋았어요정말너무좋았어요정말너무좋았어</div>
+							</div>
+						</c:forEach>
+
+
+					</div>
+				</div>
+
+				<!--  -->
 			</div>
 		</div>
 	</div>

@@ -20,11 +20,16 @@ public class ReplyController {
 	private CommunityService commService;
 	
 	@RequestMapping("/reply/insert")
-	public ModelAndView insertReply(ReplyDTO dto) {
+	public String insertReply(ReplyDTO dto) {
 		CommunityResponseDTO dbCommunity=commService.selectByCommunityId(dto.getCommunityNo(), false);
-		replyService.insertReply(dto);
-		return new ModelAndView("community/read","community",dbCommunity);
 		
+		replyService.insertReply(dto);
+		System.out.println(dto);
+		
+		Long commNo=dbCommunity.getCommunityNo();
+		
+		//return new ModelAndView("board/boardDetails","community",dbCommunity);
+		return "redirect:/board/boardDetails?communityNo="+commNo;
 	}
 	
 	@RequestMapping("/reply/delete")

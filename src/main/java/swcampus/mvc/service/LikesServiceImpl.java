@@ -54,12 +54,20 @@ public class LikesServiceImpl implements LikesService {
 
 
 	/**
-	 * like 있는지 여부 검사
+	 * like 있는지 여부 검사 - 찬하트인지 빈하트인지 조회
 	 */
 	@Override
-	public Likes selectLike(Long likesNo) {
-		return likesRep.findById(likesNo).orElse(null);
+	public int selectLike(LikesDTO likesDto) {
+		Likes dblike= likesRep.findById(likesDto.getLikesNo()).orElse(null);
+		if (dblike == null) {
+			return 0;
+		} else {
+			return 1;
+		}		
+		
 	}
+	
+	
 
 
 	/**
