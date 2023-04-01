@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Category;
 import swcampus.mvc.domain.Lecture;
@@ -24,6 +25,7 @@ import swcampus.mvc.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class LectureServiceImpl implements LectureService {
 
 	@Autowired 

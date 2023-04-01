@@ -320,49 +320,55 @@
 		</div>
 	</div>
 	
-	<!-- <script type="text/javascript">
-	/* 즐겨찾기 */
-		const button = document.getElementById("like-button");
-		const icon = document.getElementById("like");
+	<script type="text/javascript">
+	const button = document.getElementById("like-button");
+	const icon = document.getElementById("like");
+	
+	$(document).ready(function(){
+		if("${confirm}"==1){
+			icon.classList.remove("fa-star-o");
+			icon.classList.add("fa-star");
+			
+		} // 처음 상태 조회 끝 
 		
-		button.addEventListener("click", function() {
-			//없을때
+		$("#like-button").click(function(){
+			let status = {"lectureNo": "${lecture.lectureNo}", "userNo":"${lecture.userNo}"}
 			if (icon.classList.contains("fa-star-o")) {
-				icon.classList.remove("fa-star-o");
-				icon.classList.add("fa-star");
+				
 				$.ajax({
 		            type: 'post',
-		            url: '/like/select/',
-		            data : {
-		            	lectureNo : "lectureNo",
-		            	userNo :' userNo"
-		        	},
-		            contentType: 'application/json; charset=utf-8'
-		        }).done(function(data){
-		            alert("성공")
-		        }).fail(function(error){
-		            alert(JSON.stringify(error));
-		        });
+		            url: '${pageContext.request.contextPath}/like/insert',
+		            data :JSON.stringify(status),
+		            contentType: 'application/json; charset=utf-8',
+		            success:function(result){
+                    	alert("해당 강의를 찜하였습니다.")
+                    	icon.classList.remove("fa-star-o");
+        				icon.classList.add("fa-star");
+                    },
+                    error:function(err){
+                    	alert("찜하기 오류")
+                         }
+                      });//추가끝
+                   } //비었을때 이프문 조건끝
+                   if(icon.classList.contains("fa-star")) {
+       				icon.classList.remove("fa-star");
+       				icon.classList.add("fa-star-o");
+       				$.ajax({
+       		            type: 'post',
+       		            url: '${pageContext.request.contextPath}/like/delete',
+       		            data :JSON.stringify(status),
+       		            contentType: 'application/json; charset=utf-8',
+       		            success:function(result){
+                           	alert("해당 강의 찜하기를 취소하였습니다.")
+                           },
+                           error:function(err){
+                           	alert("찜하기 취소 오류")
+                                }
+                             });//삭제아작끝
+                          } //비었을때 이프문 조건끝 
 				
-				
-				
-			} else {//채워져 있을때 
-				icon.classList.remove("fa-star");
-				icon.classList.add("fa-star-o");
-			}
-		});
-	</script> -->
-	
-	<script type="text/javascript">
-	
-	$(document).ready(function({
-		let target = {"lectureNo": "${lecture.lectureNo}", "userNo":"${lecture.userNo}"}
-		console.log(target)
-		$(function(){
-			if()
-		})//첫 끝
-		
-	})//docu 끝
+		})//버튼 누를때 끝
+	})	
 	</script>
 	
 	

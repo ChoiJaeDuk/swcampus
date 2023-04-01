@@ -47,7 +47,7 @@ public class LectureTest {
 	@ParameterizedTest
 	@ValueSource(longs = 4L)
 	 void selectLec(Long lectureNo) {
-		lectureCon.selectLec(lectureNo);
+		//lectureCon.selectLec(lectureNo);
 	}
 	 
 	

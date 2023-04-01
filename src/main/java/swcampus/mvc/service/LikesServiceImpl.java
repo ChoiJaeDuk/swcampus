@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Lecture;
 import swcampus.mvc.domain.Likes;
 import swcampus.mvc.domain.User;
@@ -15,6 +17,8 @@ import swcampus.mvc.repository.UserRepository;
 
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class LikesServiceImpl implements LikesService {
 
 	@Autowired
@@ -47,8 +51,10 @@ public class LikesServiceImpl implements LikesService {
 	 */
 	
 	@Override
-	public void deleteLike(Long likeNo){
-		likesRep.deleteById(likeNo);
+	public void deleteLike(Long lectureNo, Long userNo){
+		Likes dblike=likesRep.selectLike(lectureNo, userNo);
+		
+		likesRep.deleteById(dblike.getLikesNo());
 		
 	}
 
@@ -58,12 +64,9 @@ public class LikesServiceImpl implements LikesService {
 	 */
 	@Override
 	public int selectLike(Long lectureNo, Long userNo) {
+		System.out.println("서비스오냐??");
 		Likes dblike= likesRep.selectLike(lectureNo, userNo);
-		System.out.println(lectureNo+"+"+userNo);
-		System.out.println("dblike= "+dblike);
-		if (dblike == null) {
-			return 0;
-		} 
+		if (dblike == null) { return 0;}
 		return 1;
 	}
 

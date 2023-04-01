@@ -24,10 +24,9 @@ public class TestController {
 	   public String index(Model model) {
 	      System.out.println("HomeController의 index.....");
 	      List<LectureResponseDTO> mainList=  lecService.selectAll();
-	      System.out.println(mainList);
 	      
 	      //임의값 
-	      int likesConfirm=likeService.selectLike(9L,3L);
+	      int likesConfirm=likeService.selectLike(11L,3L);
 	      System.out.println(likesConfirm);
 	      //임의값 
 	      
@@ -35,7 +34,7 @@ public class TestController {
 	      model.addAttribute("mainList", mainList);
 	      model.addAttribute("likesConfirm", likesConfirm);
 	      
-	      //임의값-시큐리티 들어오면 유저 정보 전달
+	      //임의값-시큐리티 들어오면 로그인한 유저 정보 전달로 바꿔야됨
 	      model.addAttribute("user", 3L);
 	      return "/main";//
 	   }

@@ -17,7 +17,7 @@ public interface LikesService {
 	/**
 	 * 강의 찜취소
 	 */
-	void deleteLike(Long likeNo);
+	void deleteLike(Long lectureNo, Long userNo);
 
 	/**
 	 * like 있는지 여부 검사
@@ -32,7 +32,6 @@ public interface LikesService {
 	
 	default Likes toEntitiy(LikesDTO dto, User user, Lecture lec) {
 		return Likes.builder()
-				.likesNo(dto.getLikesNo())
 				.user(user)
 				.lecture(lec)
 				.build();

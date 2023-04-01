@@ -1,7 +1,8 @@
 package swcampus.mvc.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +12,21 @@ import swcampus.mvc.service.LikesService;
 
 @RestController
 public class LikeController {
-	/*
-	 * @Autowired private LikesService likeSer;
-	 * 
-	 * @RequestMapping("/like/select") public void likeconfirm(@RequestBody LikesDTO
-	 * likesDto) { //likeSer.selectLike(likesDto); }
-	 */
+
+	@Autowired
+	private LikesService likeService;
+	
+	@RequestMapping("/like/insert")
+	public void insertLike(@RequestBody LikesDTO dto) {
+		
+		likeService.insertLike(dto);
+		
+	}
+	
+	@RequestMapping("/like/delete")
+	public void deleteLike(@RequestBody LikesDTO dto) {
+		
+		likeService.deleteLike(dto.getLectureNo(), dto.getUserNo());
+		
+	}
 }

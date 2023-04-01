@@ -13,4 +13,6 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 	
 	@Query("select l from Likes l where l.lecture.lectureNo=?1 and l.user.userNo=?2")
 	Likes selectLike(Long lectureNo, Long userNo);
+	
+	
 }

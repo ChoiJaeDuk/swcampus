@@ -22,6 +22,7 @@ public class LectureController {
 
 	@Autowired
 	private LectureService lectureService;
+	@Autowired
 	private LikesService likeService;
 
 	/**
@@ -49,16 +50,17 @@ public class LectureController {
 	 * 강의 상세조회
 	 * 
 	 * @param lectureNo
+	 * @param userNo
 	 */
 	@RequestMapping("/details/details")
 	public void selectLec(Long lectureNo,Model model,Long userNo) {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
-
-		//int confirm=likeService.selectLike(lectureNo,userNo);
-		//System.out.println("렉 컨 컨펌= "+confirm);
+		
+		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
+	    int likesConfirm=likeService.selectLike(11L,3L);
 		
 		model.addAttribute("lecture", dto);
-		//model.addAttribute("confirm", confirm);
+		model.addAttribute("confirm", likesConfirm);
 	}
 
 	/**

@@ -50,6 +50,7 @@ public interface LectureService {
 			
 			return LectureResponseDTO.builder()
 					.lectureNo(lec.getLectureNo())
+					.userNo(lec.getUser().getUserNo())
 					.lectureAgency(lec.getLectureAgency())
 					.lectureTarget(lec.getLectureTarget())
 					.lectureMethod(lec.getLectureMethod())

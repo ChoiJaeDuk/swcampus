@@ -15,6 +15,7 @@ public class LectureResponseDTO {
 	private Long lectureNo;
 	
 	private Long userNo;
+	
 	private String lectureAgency;
 	
 	private String lectureTarget;
