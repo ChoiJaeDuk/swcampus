@@ -1,6 +1,8 @@
 package swcampus.mvc.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Category;
 import swcampus.mvc.domain.Lecture;
@@ -21,8 +24,8 @@ import swcampus.mvc.repository.LectureRepository;
 import swcampus.mvc.repository.UserRepository;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class LectureServiceImpl implements LectureService {
 
 	@Autowired 
@@ -38,9 +41,13 @@ public class LectureServiceImpl implements LectureService {
 	private LikesService likeService;
 
 	@Override
-	public List<Lecture> selectAll() {
-
-		return lectureRep.findAll(Sort.by(Sort.Direction.DESC, "lectureNo"));
+	public List<LectureResponseDTO> selectAll() {
+		
+		List<Lecture> dbList=lectureRep.findAll();
+		List<LectureResponseDTO> dtoList= dbList.stream()
+				.map(c->toDto(c))
+				.collect(Collectors.toList());
+		return dtoList;
 	}
 
 	@Override

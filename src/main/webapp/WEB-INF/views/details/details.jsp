@@ -182,11 +182,12 @@
  -->
 	<div class="container-wapper">
 		<div class="container" style="margin-bottom: 20px; margin-top: 120px;">
-			<span class="LectureTitle">Kosta Spring Cloud 246기</span>
+			<span class="LectureTitle">${lecture.lectureTitle}</span>
 		</div>
 
 		<div
 			style="width: 100%; height: 300px; background-image: url('/IMG/backgroundIMG.png'); background-size: cover;">
+
 			<div style="width: 1200px; margin: 0 auto;">
 				<div style="position: relative; top: 70px;">
 					<div class="LectureContentsTitle">
@@ -196,10 +197,9 @@
 						<span>2023.06</span><span> ~ </span><span>2023.11</span>
 					</div>
 
-					<div
-						style="width: 1200px; margin: 0 auto; text-align: center; margin-top: 20px;">
+					<div style="width: 1200px; margin: 0 auto; text-align: center; margin-top: 20px;">
 						<button class="LectureBtn">홈페이지바로가기</button>
-						<button class="LectureBtn" id="like-button">
+						<button class="LectureBtn" id="like-button" >
 							찜하기 <i class="fa fa-star-o" id="like"></i>
 						</button>
 					</div>
@@ -379,22 +379,59 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script type="text/javascript">
-	/* 즐겨찾기 */
-		const button = document.getElementById("like-button");
-		const icon = document.getElementById("like");
-
-		button.addEventListener("click", function() {
+	const button = document.getElementById("like-button");
+	const icon = document.getElementById("like");
+	
+	$(document).ready(function(){
+		if("${confirm}"==1){
+			icon.classList.remove("fa-star-o");
+			icon.classList.add("fa-star");
+			
+		} // 처음 상태 조회 끝 
+		
+		$("#like-button").click(function(){
+			let status = {"lectureNo": "${lecture.lectureNo}", "userNo":"${lecture.userNo}"}
 			if (icon.classList.contains("fa-star-o")) {
-				icon.classList.remove("fa-star-o");
-				icon.classList.add("fa-star");
-			} else {
-				icon.classList.remove("fa-star");
-				icon.classList.add("fa-star-o");
-			}
-		});
+				
+				$.ajax({
+		            type: 'post',
+		            url: '${pageContext.request.contextPath}/like/insert',
+		            data :JSON.stringify(status),
+		            contentType: 'application/json; charset=utf-8',
+		            success:function(result){
+                    	alert("해당 강의를 찜하였습니다.")
+                    	icon.classList.remove("fa-star-o");
+        				icon.classList.add("fa-star");
+                    },
+                    error:function(err){
+                    	alert("찜하기 오류")
+                         }
+                      });//추가끝
+                   } //비었을때 이프문 조건끝
+                   if(icon.classList.contains("fa-star")) {
+       				icon.classList.remove("fa-star");
+       				icon.classList.add("fa-star-o");
+       				$.ajax({
+       		            type: 'post',
+       		            url: '${pageContext.request.contextPath}/like/delete',
+       		            data :JSON.stringify(status),
+       		            contentType: 'application/json; charset=utf-8',
+       		            success:function(result){
+                           	alert("해당 강의 찜하기를 취소하였습니다.")
+                           },
+                           error:function(err){
+                           	alert("찜하기 취소 오류")
+                                }
+                             });//삭제아작끝
+                          } //비었을때 이프문 조건끝 
+				
+		})//버튼 누를때 끝
+	})	
 	</script>
+	
+	
 
 
 	<script type="text/javascript">

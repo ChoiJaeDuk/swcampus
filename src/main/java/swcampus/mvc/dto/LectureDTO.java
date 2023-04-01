@@ -38,8 +38,7 @@ public class LectureDTO {
 	private Long categoryNo;
 	
 	private int lectureLikeIs;
-
-	//private Long categoryNo;
+	
 
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +22,7 @@ public class LectureController {
 
 	@Autowired
 	private LectureService lectureService;
+	@Autowired
 	private LikesService likeService;
 
 	/**
@@ -48,11 +50,17 @@ public class LectureController {
 	 * 강의 상세조회
 	 * 
 	 * @param lectureNo
+	 * @param userNo
 	 */
-	@RequestMapping("/lecture/select/{lectureNo}")
-	public void selectLec(Long lectureNo) {
+	@RequestMapping("/details/details")
+	public void selectLec(Long lectureNo,Model model,Long userNo) {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
-		System.out.println(dto);
+		
+		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
+	    int likesConfirm=likeService.selectLike(11L,3L);
+		
+		model.addAttribute("lecture", dto);
+		model.addAttribute("confirm", likesConfirm);
 	}
 
 	/**
@@ -76,10 +84,11 @@ public class LectureController {
 
 	/**
 	 * 강의 전체조회
+	 * 
 	 */
-	@RequestMapping("/lecture/list")
+	@RequestMapping("/de/list")
 	public List<LectureResponseDTO> LectureList() {
-
+		
 		return null;
 	}
 
@@ -111,5 +120,11 @@ public class LectureController {
 			 * 
 			 * 
 			 */
+	@RequestMapping("/d")
+	public void selectLike() {
+		System.out.println(11);
+		}
+	
+	
 
 }// Class LectureController 끝
