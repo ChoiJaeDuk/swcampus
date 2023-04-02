@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Lecture;
 import swcampus.mvc.domain.Likes;
 import swcampus.mvc.domain.User;
@@ -15,6 +17,8 @@ import swcampus.mvc.repository.UserRepository;
 
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class LikesServiceImpl implements LikesService {
 
 	@Autowired
@@ -36,7 +40,7 @@ public class LikesServiceImpl implements LikesService {
 		Lecture dbLect = lecRep.findById(likeDto.getLectureNo()).orElse(null);
 		
 		Likes likes = toEntitiy(likeDto,dbUser,dbLect);
-		
+		System.out.println(likes);
 		likesRep.save(likes);
 	}	
 	
@@ -47,8 +51,10 @@ public class LikesServiceImpl implements LikesService {
 	 */
 	
 	@Override
-	public void deleteLike(Long likeNo){
-		likesRep.deleteById(likeNo);
+	public void deleteLike(Long lectureNo, Long userNo){
+		Likes dblike=likesRep.selectLike(lectureNo, userNo);
+		
+		likesRep.deleteById(dblike.getLikesNo());
 		
 	}
 
@@ -57,29 +63,27 @@ public class LikesServiceImpl implements LikesService {
 	 * like 있는지 여부 검사 - 찬하트인지 빈하트인지 조회
 	 */
 	@Override
-	public int selectLike(LikesDTO likesDto) {
-		Likes dblike= likesRep.findById(likesDto.getLikesNo()).orElse(null);
-		if (dblike == null) {
-			return 0;
-		} else {
-			return 1;
-		}		
-		
+	public int selectLike(Long lectureNo, Long userNo) {
+		System.out.println("서비스오냐??");
+		Likes dblike= likesRep.selectLike(lectureNo, userNo);
+		if (dblike == null) { return 0;}
+		return 1;
 	}
-	
-	
+
+
 
 
 	/**
 	 * 좋아요 리스트 불러오기
-	 * */
+	* */
 	@Override
-	public List<Likes> selectLikesListByUserNo(String userNo) {
-		// TODO Auto-generated method stub
+	public List<LikesDTO> selectLikesListByUserNo(String userNo) {
+		
+		
 		return null;
 	}
 
-
+ 
 
 
 	
