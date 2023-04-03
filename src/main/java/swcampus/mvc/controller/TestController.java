@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import swcampus.mvc.dto.LectureResponseDTO;
 import swcampus.mvc.dto.LikesDTO;
@@ -38,6 +39,12 @@ public class TestController {
 	      model.addAttribute("user", 3L);
 	      return "/main";//
 	   }
+	   
+//	   @RequestMapping("/login")
+//	   public void login(String username, String password) {
+//		   System.out.println(username);
+//		   System.out.println(password);
+//	   }
 		/*
 		 * @RequestMapping("/details/{url}") public void url() {}
 		 * 
@@ -51,4 +58,10 @@ public class TestController {
 	   @RequestMapping("/mypage/{url}") public void mypage() {}
 	   @RequestMapping("/details/{url}") public void details() {}
 	   @RequestMapping("/admin/{url}") public void admin() {}
+	   
+	   @RequestMapping("/api/v1/manager/")
+	   @ResponseBody
+	   public String securityTest() { 
+		   return "<h1>reports</h1>";
+	   }
 }

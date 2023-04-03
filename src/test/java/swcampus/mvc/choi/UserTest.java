@@ -2,6 +2,7 @@ package swcampus.mvc.choi;
 
 import java.nio.channels.GatheringByteChannel;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -44,10 +45,10 @@ public class UserTest {
 //				.userJob("테스트사원")
 //				.userRole("ROLE_USER")
 //				.build());
-		for(int i=1; i<=10; i++) {
-			userService.userJoin(new UserRequestDTO(1L, "test"+i,"test@test.com","테스트","010-2222-2222","1234",Role.ROLE_USER,"테스트(주)", "테스트직"));
-		}
-		//userRep.save(user);
+//		for(int i=1; i<=10; i++) {
+//			userService.userJoin(new UserRequestDTO(1L, "test"+i,"test@test.com","테스트","010-2222-2222","1234",Role.ROLE_USER,"테스트(주)", "테스트직"));
+//		}
+//		//userRep.save(user);
 	}
 	
 	@Test
@@ -59,6 +60,12 @@ public class UserTest {
 		for(UserResponseDTO u:list.getDtoList()) {
 			System.out.println(u);
 		}
+	}
+	
+	@Test
+	void selectUserById() {
+		User user = userRep.findByUserId("test1");
+		System.out.println(user);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package swcampus.mvc.config.jwt;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Date;
 
@@ -7,6 +8,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,7 +35,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		
-		System.out.println("JwtAuthenticationFilter : 진입");
+		System.out.println("JwtAuthenticationFilter : 진입");		
 		
 		// request에 있는 username과 password를 파싱해서 자바 Object로 받기
 		ObjectMapper om = new ObjectMapper();
@@ -77,15 +79,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		
 		PrincipalDetails principalDetailis = (PrincipalDetails) authResult.getPrincipal();
-		
+		System.out.println("인증되니?");
 		String jwtToken = JWT.create()
 				.withSubject(principalDetailis.getUsername())
-				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
+				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))//토큰 유지시간
 				.withClaim("userNo", principalDetailis.getUser().getUserNo())
 				.withClaim("username", principalDetailis.getUser().getUserId())
 				.sign(Algorithm.HMAC512(JwtProperties.SECRET));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("JWT_TOKEN", jwtToken);
 	}
 	
 }

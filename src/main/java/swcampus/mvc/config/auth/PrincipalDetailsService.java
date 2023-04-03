@@ -21,7 +21,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		System.out.println("PrincipalDetailsService : 진입");
 		User user = userRepository.findByUserId(userId);
-
+		System.out.println("user = " + user);
 		// session.setAttribute("loginUser", user);
 		return new PrincipalDetails(user);
 	}

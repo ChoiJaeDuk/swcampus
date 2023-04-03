@@ -111,7 +111,57 @@
 }
 
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#login").on("click", function(){
 
+			// 로그인 폼에서 데이터를 가져옴
+			var username = $('input[name="username"]').val();
+			var password = $('input[name="password"]').val();
+
+			// 로그인 데이터를 JSON 형식으로 만듦
+			var loginData = {
+			  "username": username,
+			  "password": password
+			};
+			
+			// AJAX 요청을 보냄
+			$.ajax({
+				  type: "POST",
+				  url: "${pageContext.request.contextPath}/login",
+				  data: JSON.stringify(loginData),
+				  contentType: "application/json",
+				  success: function(response,status,xhr) {
+					  var jwtToken = xhr.getResponseHeader("Authorization");
+					  localStorage.setItem('jwtToken', jwtToken);
+				      alert("로그인이 완료되었습니다.");
+				  },
+				  error: function(xhr, status, error) {
+					  alert("로그인에 실패하였습니다.");
+				  }
+			}); 
+		});
+		
+		$("#pwdSearch").on("click", function(){
+			alert(localStorage.getItem("jwtToken"))
+			$.ajax({
+				  type: "GET",
+				  url: "${pageContext.request.contextPath}/api/v1/user/123",
+				  beforeSend: function(xhr) {
+					    xhr.setRequestHeader("Authorization", localStorage.getItem("jwtToken"));
+					  },
+				  success: function(response,status,xhr) {
+					  console.log(data);
+				  },
+				  error: function(xhr, status, error) {
+					  alert("에러발생");
+				  }
+			}); 
+		});
+		
+	});
+</script>
 </head>
 <body>
 <div class="wapper" style="min-height: 800px; background-color: #EFF5FF20;">
@@ -119,12 +169,12 @@
 	<div class="login-page">
 	    <h3 style="font-size: 40px; color: #2D65F2; margin-bottom: 20px; text-align: center; font-weight: 800;">LONIN</h3>
 		<div class="form">
-			<form class="login-form">
-				<input type="text" placeholder="아이디" /> <input type="password"
-					placeholder="비밀번호" />
-				<button>login</button>
+			<form class="login-form" >
+				<input type="text" placeholder="아이디" name="username"/> 
+				<input type="password" placeholder="비밀번호" name="password"/>
+				<button id="login">login</button>
 				<p class="message">
-					  <a href="#" style="color: #767676;">비밀번호 찾으러가기</a>  |  <a href="#">회원가입하러가기</a>
+					  <a href="#" id="pwdSearch" style="color: #767676;" >비밀번호 찾으러가기</a>  |  <a href="#">회원가입하러가기</a>
 				</p>
 			</form>
 		</div>

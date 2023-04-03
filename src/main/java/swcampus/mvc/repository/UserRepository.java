@@ -8,5 +8,4 @@ import swcampus.mvc.domain.User;
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User>{
 	
 	User findByUserId(String userId);
-	
 }

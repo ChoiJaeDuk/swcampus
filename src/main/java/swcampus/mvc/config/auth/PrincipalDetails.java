@@ -53,6 +53,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+    	System.out.println("실제 있어?: " + user.getRoleList().get(0));
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         user.getRoleList().forEach(r -> {
             authorities.add(() -> {
