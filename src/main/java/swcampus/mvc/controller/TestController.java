@@ -24,13 +24,13 @@ public class TestController {
 	   public String index(Model model) {
 	      System.out.println("HomeController의 index.....");
 	      List<LectureResponseDTO> mainList=  lecService.selectAll();
-	      
+	      System.out.println("1111");
 	      //임의값 
-	      int likesConfirm=likeService.selectLike(11L,3L);
+	      int likesConfirm=likeService.selectLike(7L,3L);
 	      System.out.println(likesConfirm);
 	      //임의값 
 	      
-	      
+	      System.out.println("여기오니");
 	      model.addAttribute("mainList", mainList);
 	      model.addAttribute("likesConfirm", likesConfirm);
 	      

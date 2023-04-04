@@ -52,7 +52,7 @@ public class LectureController {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
 		
 		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
-	    int likesConfirm=likeService.selectLike(11L,3L);
+	    int likesConfirm=likeService.selectLike(7L,3L);
 		
 		model.addAttribute("lecture", dto);
 		model.addAttribute("confirm", likesConfirm);
