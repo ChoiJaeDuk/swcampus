@@ -1,64 +1,31 @@
 package swcampus.mvc.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import swcampus.mvc.dto.LikesDTO;
 import swcampus.mvc.service.LikesService;
 
+@RestController
 public class LikeController {
-	
+
 	@Autowired
 	private LikesService likeService;
 	
-
-	/**
-	 * 등록
-	 */
 	@RequestMapping("/like/insert")
-	@ResponseBody
-	public String insert(@RequestBody Map<String, Object> result) {
-
-		  long userNo = (long)Integer.parseInt((String) result.get("userNo"));		  
-		  long LectureNo = (long)Integer.parseInt((String) result.get("lectureNo"));
+	public void insertLike(@RequestBody LikesDTO dto) {
 		
-		  
-		  
-		  return null;
-		  
-	}
-
-	/**
-	 * 삭제 - 토글
-	 */
-	@RequestMapping("/like/delete")
-	@ResponseBody
-	public String delete(@RequestBody Map<String, Object> result) {
-//		
-		long userNo = (long)Integer.parseInt((String) result.get("userNo"));		  
-		  long gatherNo = (long)Integer.parseInt((String) result.get("gatherNo"));
+		likeService.insertLike(dto);
 		
-		  likeService.deleteLike(gatherNo, userNo);
-
-		return "";
 	}
 	
-	/**
-	 * 삭제 - 버튼
-	 */
-	@RequestMapping("/like/deleteButton")
-	@ResponseBody
-	public String delete(Long gatherNo, Long userNo) {
-		//long userNo = (long)Integer.parseInt((String) result.get("userNo"));		  
-		//long gatherNo = (long)Integer.parseInt((String) result.get("gatherNo"));
+	@RequestMapping("/like/delete")
+	public void deleteLike(@RequestBody LikesDTO dto) {
 		
-		likeService.deleteLike(gatherNo, userNo);
-
-		return "";
+		likeService.deleteLike(dto.getLectureNo(), dto.getUserNo());
+		
 	}
-
 
 }

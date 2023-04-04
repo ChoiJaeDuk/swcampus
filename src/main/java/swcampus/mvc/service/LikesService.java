@@ -22,19 +22,18 @@ public interface LikesService {
 	/**
 	 * like 있는지 여부 검사
 	 */
-	int selectLike(LikesDTO likesDto);
+	int selectLike(Long lectureNo, Long userNo);
 
 	/**
 	 * 좋아요 리스트 불러오기(유저 아이디 별)
 	 * */
-	List<Likes> selectId(LikesDTO likesDto);
 
-
-
+	List<LikesDTO> selectLikesListByUserNo(String userNo);
+	
+	
 
 	default Likes toEntitiy(LikesDTO dto, User user, Lecture lec) {
 		return Likes.builder()
-				.likesNo(dto.getLikesNo())
 				.user(user)
 				.lecture(lec)
 				.build();

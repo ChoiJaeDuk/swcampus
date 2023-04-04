@@ -6,76 +6,73 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/board/board.css">
 <style type="text/css">
-.sidebar {
-  background-color: #f0f0f0;
-  width: 200px;
-  height: 100%;
-  position: fixed;
+.admin_sider{
+	list-style: none;
+	margin-right: 20px;
 }
 
-.sidebar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.admin_sider li a{
+	font-size: 24px;
+	font-weight: 600;
+	text-decoration: none;
+	padding: 10px 20px;
+	background-color: aqua;
+	display: block;
+	color: #ffffff;
+	background-color: #2d65f2;
+	text-align: center;
+	list-style: none;
 }
 
-.sidebar ul li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+.admin_sider li ul li a{
+	font-size: 22px;
+	text-decoration: none;
+	padding: 12px 20px;
+	background-color: #ffffff;
+	color:#2d65f2;
+	display: block;
+	border: 0.2px solid #2d65f220;
+	list-style: none;
+	text-align: left;
 }
 
-.sidebar ul li:hover {
-  cursor: pointer;
-  background-color: #e6e6e6;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  left: 100%;
-  top: 0;
-  margin-top: -10px;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li a {
-  display: block;
-  padding: 5px 10px;
-}
-
-.dropdown-menu li a:hover {
-  background-color: #e6e6e6;
+.admin_sider li ul{
+	list-style: none;
 }
 </style>
 </head>
-<body>
-<div class="sidebar">
-  <ul>
-    <li class="dropdown">
-      강의관리
-      <ul class="dropdown-menu">
-        <li><a href="#">강의목록</a></li>
-      </ul>
-    </li>
-    <li class="dropdown">
-      리뷰관리
-      <ul class="dropdown-menu">
-        <li><a href="#">승인리뷰</a></li>
-        <li><a href="#">미승인리뷰</a></li>
-      </ul>
-    </li>
-    <li class="dropdown">
-      회원관리
-      <ul class="dropdown-menu">
-        <li><a href="#">회원목록</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
+<body>		
+			
+			<ul class="admin_sider">
+				<li><a href="javascript:;" onclick="addAdminCategoryClass(this);">강의관리</a>
+					<ul class="hide admin_sider_Class">
+						<li><a href="/admin/LecturesList">강의목록</a></li>
+					</ul>
+				</li>
+				<li><a href="javascript:;" onclick="addAdminCategoryClass(this);">리뷰관리</a>
+					<ul class="hide admin_sider_Class">
+						<li><a href="/admin/ApprovalReview">승인리뷰</a></li>
+						<li><a href="/admin/UnapprovedReview">미승인리뷰</a></li>
+					</ul></li>
+					
+					<li><a href="javascript:;" onclick="addAdminCategoryClass(this);">회원관리</a>
+					<ul class="hide admin_sider_Class">
+						<li><a href="/admin/UserList">회원목록</a></li>
+					</ul></li>
+			</ul>
 
+	
+	<script type="text/javascript">
+	function addAdminCategoryClass(obj) {
+	
+		$("ul.admin_sider_Class").not($(obj).next("ul")).not("ul.hide")
+				.addClass("hide");
+		$(obj).next("ul").toggleClass("hide");
+	}
+	
+	</script>
 </body>
 </html>

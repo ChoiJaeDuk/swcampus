@@ -46,7 +46,7 @@ public class NoticeController {
     public String noticeList(Model model) {
         List<NoticeDto> notices = noticeService.findAll();
         model.addAttribute("notices", notices);
-        return "hello3";
+        return "/views/board/noticeBoard";
     }
 
     @GetMapping("/update/{noticeNo}")
@@ -62,10 +62,9 @@ public class NoticeController {
         }
 
         NoticeDto notice = noticeService.findNotice(noticeNo);
-        noticeService.updateNotice(notice);
+        noticeService.updateNotice(notice, noticeDto);
 
         return "redirect:/"; //리스트로 가야됨.
-
     }
 
 

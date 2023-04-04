@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import swcampus.mvc.domain.Lecture;
 import swcampus.mvc.domain.Likes;
 import swcampus.mvc.domain.User;
@@ -15,6 +17,8 @@ import swcampus.mvc.repository.UserRepository;
 
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class LikesServiceImpl implements LikesService {
 
 	@Autowired
@@ -37,6 +41,8 @@ public class LikesServiceImpl implements LikesService {
 
 		Likes likes = toEntitiy(likeDto,dbUser,dbLect);
 
+		System.out.println(likes);
+
 		likesRep.save(likes);
 	}	
 
@@ -48,9 +54,12 @@ public class LikesServiceImpl implements LikesService {
 
 	@Override
 	public void deleteLike(Long lectureNo, Long userNo){
-		Likes like = likesRep.searchByLike(lectureNo, userNo);
+	
+		Likes dblike=likesRep.selectLike(lectureNo, userNo);
 
-		likesRep.deleteById(like.getLikesNo());
+		likesRep.deleteById(dblike.getLikesNo());
+
+		
 	}
 
 
@@ -58,27 +67,26 @@ public class LikesServiceImpl implements LikesService {
 	 * like 있는지 여부 검사
 	 */
 	@Override
-	public int selectLike(LikesDTO likesDto) {
 
-		Likes dblike= likesRep.searchByLike(likesDto.getLectureNo(), likesDto.getUserNo());
-		if (dblike == null) {
-			insertLike(likesDto);
-			return 1;
-		} else {
-			deleteLike(likesDto.getLectureNo(), likesDto.getUserNo());
-			return 0;
-		}
-
+	public int selectLike(Long lectureNo, Long userNo) {
+		System.out.println("서비스오냐??");
+		Likes dblike= likesRep.selectLike(lectureNo, userNo);
+		if (dblike == null) { return 0;}
+		return 1;
 	}
 
-	/**
-	 * 유저 아이디별 좋아요 리스트(마이페이지에서 사용?)
-	 */
-	@Override
-	public List<Likes> selectId(LikesDTO likesDto) {
 
-		return likesRep.selectByUserId(likesDto.getLectureNo(), likesDto.getUserNo());
-	}
+/**
+
+ * 좋아요 리스트 불러오기
+ * */
+@Override
+public List<LikesDTO> selectLikesListByUserNo(String userNo) {
+
+
+	return null;
+
+}
 
 
 

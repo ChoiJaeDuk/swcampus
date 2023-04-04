@@ -41,12 +41,14 @@ public interface CommunityService {
 	
 	default  CommunityResponseDTO toDTO (Community community) {
 		return CommunityResponseDTO.builder()
+			.communityNo(community.getCommunityNo())
 			.userName(community.getUser().getUserName())
 			.communityTitle(community.getCommunityTitle())
 			.communityContent(community.getCommunityContent())
 			.communityEditDate(community.getCommunityEditDate())
 			.communityCategory(community.getCommunityCategory())
 			.communityRegDate(community.getCommunityRegDate())
+			.communityCount(community.getCommunityCount())
 			.replyList(community.getReplyList().stream()
 					.map(ReplyResponseDTO::new).collect(Collectors.toList()))	
 			.build();

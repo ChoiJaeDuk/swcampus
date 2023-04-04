@@ -11,6 +11,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class CommunityResponseDTO {
+	private Long communityNo;
 	
 	private String userName;
 	
@@ -24,6 +25,7 @@ public class CommunityResponseDTO {
 	
 	private String communityCategory;
 	
+	private int communityCount;
 	
 	private List<ReplyResponseDTO> replyList;
 	
