@@ -10,9 +10,11 @@ import swcampus.mvc.domain.Likes;
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 
 	List<Likes> findByLikesNo(Long likesNo);
+
 	
 	@Query("select l from Likes l where l.lecture.lectureNo=?1 and l.user.userNo=?2")
 	Likes selectLike(Long lectureNo, Long userNo);
 	
 	
+
 }

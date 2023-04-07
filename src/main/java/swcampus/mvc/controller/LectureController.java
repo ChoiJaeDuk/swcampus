@@ -3,17 +3,12 @@ package swcampus.mvc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import swcampus.mvc.domain.Likes;
-import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.LectureDTO;
 import swcampus.mvc.dto.LectureResponseDTO;
-import swcampus.mvc.dto.LikesDTO;
 import swcampus.mvc.service.LectureService;
 import swcampus.mvc.service.LikesService;
 
@@ -57,7 +52,7 @@ public class LectureController {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
 		
 		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
-	    int likesConfirm=likeService.selectLike(11L,3L);
+	    int likesConfirm=likeService.selectLike(7L,3L);
 		
 		model.addAttribute("lecture", dto);
 		model.addAttribute("confirm", likesConfirm);
@@ -86,6 +81,7 @@ public class LectureController {
 	 * 강의 전체조회
 	 * 
 	 */
+
 	@RequestMapping("/de/list")
 	public List<LectureResponseDTO> LectureList() {
 		
@@ -126,5 +122,6 @@ public class LectureController {
 		}
 	
 	
+
 
 }// Class LectureController 끝

@@ -1,6 +1,7 @@
 package swcampus.mvc.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import swcampus.mvc.domain.Likes;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class LikesDTO {
 	
 	private Long likesNo;	

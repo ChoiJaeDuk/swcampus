@@ -8,7 +8,7 @@ import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.LikesDTO;
 
 public interface LikesService {
-	
+
 	/**
 	 * 강의 찜하기 
 	 * */
@@ -25,17 +25,20 @@ public interface LikesService {
 	int selectLike(Long lectureNo, Long userNo);
 
 	/**
-	 * 좋아요 리스트 불러오기
+	 * 좋아요 리스트 불러오기(유저 아이디 별)
 	 * */
+
 	List<LikesDTO> selectLikesListByUserNo(String userNo);
 	
 	
+
 	default Likes toEntitiy(LikesDTO dto, User user, Lecture lec) {
 		return Likes.builder()
 				.user(user)
 				.lecture(lec)
 				.build();
-		
+
 	}
+
 
 }

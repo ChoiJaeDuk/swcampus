@@ -23,13 +23,13 @@ public class LikesServiceImpl implements LikesService {
 
 	@Autowired
 	private LikesRepository likesRep;
-	
+
 	@Autowired
 	private UserRepository userRep;
-	
+
 	@Autowired
 	private LectureRepository lecRep;
-	
+
 
 	/**
 	 * 찜하기
@@ -38,31 +38,36 @@ public class LikesServiceImpl implements LikesService {
 	public void insertLike(LikesDTO likeDto) {
 		User dbUser=userRep.findById(likeDto.getUserNo()).orElse(null);
 		Lecture dbLect = lecRep.findById(likeDto.getLectureNo()).orElse(null);
-		
+
 		Likes likes = toEntitiy(likeDto,dbUser,dbLect);
+
 		System.out.println(likes);
+
 		likesRep.save(likes);
 	}	
-	
-	
+
+
 
 	/**
 	 * 찜취소
 	 */
-	
+
 	@Override
 	public void deleteLike(Long lectureNo, Long userNo){
+	
 		Likes dblike=likesRep.selectLike(lectureNo, userNo);
-		
+
 		likesRep.deleteById(dblike.getLikesNo());
+
 		
 	}
 
 
 	/**
-	 * like 있는지 여부 검사 - 찬하트인지 빈하트인지 조회
+	 * like 있는지 여부 검사
 	 */
 	@Override
+
 	public int selectLike(Long lectureNo, Long userNo) {
 		System.out.println("서비스오냐??");
 		Likes dblike= likesRep.selectLike(lectureNo, userNo);
@@ -71,21 +76,21 @@ public class LikesServiceImpl implements LikesService {
 	}
 
 
+/**
+
+ * 좋아요 리스트 불러오기
+ * */
+@Override
+public List<LikesDTO> selectLikesListByUserNo(String userNo) {
 
 
-	/**
-	 * 좋아요 리스트 불러오기
-	* */
-	@Override
-	public List<LikesDTO> selectLikesListByUserNo(String userNo) {
-		
-		
-		return null;
-	}
+	return null;
 
- 
+}
 
 
-	
+
+
+
 
 }
