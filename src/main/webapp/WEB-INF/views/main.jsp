@@ -113,6 +113,24 @@ button[type="submit"] {
 }
 
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	
+	$.ajax({
+	    url: "${pageContext.request.contextPath}/userInfo",
+	    type: "GET",
+	    headers: {
+	        "Authorization": sessionStorage.getItem("jwtToken")
+	    },
+	    success: function(data) {
+	        console.log(data);
+	        // 사용자 정보를 이용하여 페이지 업데이트 등의 작업 수행
+	    },
+	    error: function(xhr, status, error) {
+	        alert("사용자 정보를 가져오는 데 실패하였습니다.");
+	    }
+	});
+</script>
 </head>
 <body>
 	<!--contnets-->

@@ -1,6 +1,5 @@
 package swcampus.mvc.config.jwt;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Date;
 
@@ -8,12 +7,14 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
@@ -28,6 +29,9 @@ import swcampus.mvc.dto.LoginRequestDto;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
 	private final AuthenticationManager authenticationManager;
+	
+	
+	private final RedisTemplate<String, Object> redisTemplate;
 	
 	// Authentication 객체 만들어서 리턴 => 의존 : AuthenticationManager
 	// 인증 요청시에 실행되는 함수 => /login
@@ -78,18 +82,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		
-		PrincipalDetails principalDetailis = (PrincipalDetails) authResult.getPrincipal();
-		System.out.println("인증되니?");
+		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
+		System.out.println("인증되니?" );
 		String jwtToken = JWT.create()
-				.withSubject(principalDetailis.getUsername())
+				.withSubject(principalDetails.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))//토큰 유지시간
-				.withClaim("userNo", principalDetailis.getUser().getUserNo())
-				.withClaim("username", principalDetailis.getUser().getUserId())
+				.withClaim("userNo", principalDetails.getUser().getUserNo())
+				.withClaim("username", principalDetails.getUser().getUserId())
 				.sign(Algorithm.HMAC512(JwtProperties.SECRET));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
-//		HttpSession session = request.getSession();
-//		session.setAttribute("JWT_TOKEN", jwtToken);
+		
 	}
 	
 }

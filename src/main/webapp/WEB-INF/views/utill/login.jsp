@@ -114,6 +114,16 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		//로그인시 세션스토리지에 JWT 토큰 유무를 판단해 페이지를 바꾼다
+		/* $(document).ready(function() {
+			  const jwtToken = sessionStorage.getItem('jwtToken');
+			  if (jwtToken) {
+			    // If the JWT token doesn't exist, redirect the user to the login page
+			    window.location.href = '/';
+			  } 
+		}); */
+		
+		
 		$("#login").on("click", function(){
 
 			// 로그인 폼에서 데이터를 가져옴
@@ -134,8 +144,9 @@
 				  contentType: "application/json",
 				  success: function(response,status,xhr) {
 					  var jwtToken = xhr.getResponseHeader("Authorization");
-					  localStorage.setItem('jwtToken', jwtToken);
+					  sessionStorage.setItem('jwtToken', jwtToken);
 				      alert("로그인이 완료되었습니다.");
+				      location.replace("${pageContext.request.contextPath}/");
 				  },
 				  error: function(xhr, status, error) {
 					  alert("로그인에 실패하였습니다.");
@@ -144,17 +155,17 @@
 		});
 		
 		$("#pwdSearch").on("click", function(){
-			alert(localStorage.getItem("jwtToken"))
 			$.ajax({
-				  type: "GET",
-				  url: "${pageContext.request.contextPath}/api/v1/user/123",
+				  type: "POST",
+				  url: "${pageContext.request.contextPath}/logout",
 				  beforeSend: function(xhr) {
-					    xhr.setRequestHeader("Authorization", localStorage.getItem("jwtToken"));
-					  },
-				  success: function(response,status,xhr) {
-					  console.log(data);
+					    xhr.setRequestHeader("Authorization", sessionStorage.getItem("jwtToken"));
+					  }, 
+				  success: function(response) {
+					  sessionStorage.removeItem('jwtToken');
+					  console.log(response);
 				  },
-				  error: function(xhr, status, error) {
+				  error: function(error) {
 					  alert("에러발생");
 				  }
 			}); 
@@ -169,14 +180,14 @@
 	<div class="login-page">
 	    <h3 style="font-size: 40px; color: #2D65F2; margin-bottom: 20px; text-align: center; font-weight: 800;">LONIN</h3>
 		<div class="form">
-			<form class="login-form" >
+		<!-- 	<form class="login-form" > -->
 				<input type="text" placeholder="아이디" name="username"/> 
 				<input type="password" placeholder="비밀번호" name="password"/>
 				<button id="login">login</button>
 				<p class="message">
 					  <a href="#" id="pwdSearch" style="color: #767676;" >비밀번호 찾으러가기</a>  |  <a href="#">회원가입하러가기</a>
 				</p>
-			</form>
+		<!-- 	</form> -->
 		</div>
 	</div>
 </div>
