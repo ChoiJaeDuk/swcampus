@@ -10,8 +10,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,12 @@ public class UserController {
 	private final JwtTokenProvider tokenProvider;
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
+	
+	
+	@RequestMapping("/user/joinForm")
+	public String joinForm() {
+		return "utill/join";
+	}
 	
 	@RequestMapping("/user/join")
 	public void userJoin(UserRequestDTO userDTO) {
@@ -72,7 +80,7 @@ public class UserController {
 	    return "redirect:/loginForm";
 	}
 	
-	@RequestMapping("userInfo")
+	@RequestMapping("/userInfo")
 	@ResponseBody
 	public PrincipalDetails userInfo(HttpServletRequest request, @AuthenticationPrincipal PrincipalDetails userDetails) {
 		
@@ -82,4 +90,5 @@ public class UserController {
 		return userDetails;
 	}
 	
+
 }

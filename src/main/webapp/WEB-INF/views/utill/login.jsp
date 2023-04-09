@@ -185,7 +185,7 @@
 				<input type="password" placeholder="비밀번호" name="password"/>
 				<button id="login">login</button>
 				<p class="message">
-					  <a href="#" id="pwdSearch" style="color: #767676;" >비밀번호 찾으러가기</a>  |  <a href="#">회원가입하러가기</a>
+					  <a href="#" id="pwdSearch" style="color: #767676;" >비밀번호 찾으러가기</a>  |  <a href="${pageContext.request.contextPath}/user/joinForm">회원가입하러가기</a>
 				</p>
 		<!-- 	</form> -->
 		</div>

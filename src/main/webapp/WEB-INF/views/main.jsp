@@ -116,23 +116,12 @@ button[type="submit"] {
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	
-	$.ajax({
-	    url: "${pageContext.request.contextPath}/userInfo",
-	    type: "GET",
-	    headers: {
-	        "Authorization": sessionStorage.getItem("jwtToken")
-	    },
-	    success: function(data) {
-	        console.log(data);
-	        // 사용자 정보를 이용하여 페이지 업데이트 등의 작업 수행
-	    },
-	    error: function(xhr, status, error) {
-	        alert("사용자 정보를 가져오는 데 실패하였습니다.");
-	    }
-	});
+	
 </script>
 </head>
 <body>
+	
+	
 	<!--contnets-->
 	<div class="contnets-wapper" style="width: 100%;">
 		<div
@@ -144,7 +133,7 @@ button[type="submit"] {
 		<div class="best-contents">
 			<div class="best-lecture">
 				<!-- 반복문시작 -->
-				<c:forEach var="main" begin="0" end="10" items="${mainList }">
+				<c:forEach var="main" begin="0" end="10" items="${mainList}">
 					<div class=" lecture-card" onclick="location.href='/details/details?lectureNo=${main.lectureNo}&userNo=${user}'">
 						<div class="lecture">
 							<p class="association">한국 소프트웨어협회</p>

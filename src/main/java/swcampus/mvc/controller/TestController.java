@@ -57,7 +57,7 @@ public class TestController {
 	   @RequestMapping("/utill/{url}") public void url() {}
 	   @RequestMapping("/mypage/{url}") public void mypage() {}
 	   @RequestMapping("/details/{url}") public void details() {}
-	   @RequestMapping("/admin/{url}") public void admin() {}
+	   //@RequestMapping("/admin/{url}") public void admin() {}
 	   
 	   @RequestMapping("/api/v1/manager/")
 	   @ResponseBody

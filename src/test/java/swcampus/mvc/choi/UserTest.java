@@ -43,23 +43,28 @@ public class UserTest {
 //				.userName("테스트")
 //				.userCompany("테스트(주)")
 //				.userJob("테스트사원")
-//				.userRole("ROLE_USER")
+//				.userRole(Role.ROLE_USER)
 //				.build());
-//		for(int i=1; i<=10; i++) {
-//			userService.userJoin(new UserRequestDTO(1L, "test"+i,"test@test.com","테스트","010-2222-2222","1234",Role.ROLE_USER,"테스트(주)", "테스트직"));
-//		}
-//		//userRep.save(user);
+		for(int i=11; i<=100; i++) {
+			userService.userJoin(new UserRequestDTO(1L, "test"+i,"test@test.com","테스트","010-2222-2222","1234",Role.ROLE_USER,"테스트(주)", "테스트직"));
+		}
+		//userRep.save(user);
+		
+		//userService.userJoin(new UserRequestDTO(1L, "admin","admin@admin.com","관리자","010-2222-2222","1234",Role.ROLE_ADMIN,"SWCampus", "관리자"));
+		
 	}
 	
 	@Test
 	void selectUserList() {
-		PageRequestDTO pageRequestDTO = new PageRequestDTO(1,5);
+		PageRequestDTO pageRequestDTO = new PageRequestDTO(2,1);
 		
-		PageResponseDTO<UserResponseDTO, User> list = userService.selectUserList(pageRequestDTO,"userNo");
+		PageResponseDTO<UserResponseDTO, User> list = userService.selectUserList(pageRequestDTO);
 		
-		for(UserResponseDTO u:list.getDtoList()) {
-			System.out.println(u);
-		}
+//		for(UserResponseDTO u:list.getDtoList()) {
+//			System.out.println(u);
+//		}
+		
+		System.out.println(list);
 	}
 	
 	@Test

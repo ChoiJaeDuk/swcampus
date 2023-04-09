@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	
 	//Sorting 처리해야함
 	@Override
-	public PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO, String sort) {
+	public PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO) {
 		Pageable pageable = requestDTO.getPageable(Sort.by("userNo"));
 		
 		Page<User> result = userRep.findAll(pageable);
