@@ -72,7 +72,7 @@
 				<td>정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요정말너무재밌어요</td>
 			</tr>
 		</table>
-		<button class="formbutton" style="float: left;  margin-left:10px; background-color:#cccccc20; color: #22222250; border: none; width: 32%; font-size: 22px; padding: 5px 0px;">목록</button>
+		<button class="formbutton"  style="float: left;  margin-left:10px; background-color:#cccccc20; color: #22222250; border: none; width: 32%; font-size: 22px; padding: 5px 0px;">목록</button>
 		<button class="formbutton" style="float: left;  margin-left:5px; background-color:#EFF5FF; color: #2D65F2; border: none; width: 32%; font-size: 22px; padding: 5px 0px;">수정</button>
 		<button class="formbutton" style="float: left; margin-left:5px; background-color:#2D65F2; color: #EFF5FF; border: none; width: 32%; font-size: 22px; padding: 5px 0px;">삭제</button>
 	</div>

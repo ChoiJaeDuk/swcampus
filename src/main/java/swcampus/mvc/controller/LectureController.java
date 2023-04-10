@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import swcampus.mvc.dto.LectureDTO;
@@ -24,7 +27,7 @@ public class LectureController {
 	 * 강의등록 폼 열기
 	 */
 
-	@RequestMapping("/lecture/insertForm")
+	  @GetMapping("/admin/lectureInsertForm")
 	public void lectureInsertForm(LectureDTO lectureDto) {
 
 	}
@@ -38,25 +41,10 @@ public class LectureController {
 	public String lectureInsert(LectureDTO lectureDto) {
 		lectureService.insertLecture(lectureDto);
 		System.out.println("컨트롤러에서 " + lectureDto);
-		return "";
+		return "redirect:/admin/LectureList";
 	}
 
-	/**
-	 * 강의 상세조회
-	 * 
-	 * @param lectureNo
-	 * @param userNo
-	 */
-	@RequestMapping("/details/details")
-	public void selectLec(Long lectureNo,Model model,Long userNo) {
-		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
-		
-		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
-	    int likesConfirm=likeService.selectLike(11L,3L);
-		
-		model.addAttribute("lecture", dto);
-		model.addAttribute("confirm", likesConfirm);
-	}
+
 
 	/**
 	 * 강의 수정하기
@@ -80,13 +68,15 @@ public class LectureController {
 	/**
 	 * 강의 전체조회
 	 * 
-	 */
-
-	@RequestMapping("/de/list")
+	@RequestMapping("/lecture/{url}")
 	public List<LectureResponseDTO> LectureList() {
 		
 		return null;
 	}
+	 */
+	
+	
+	
 
 	/**
 	 * 카테고리별 강의 전체조회
@@ -96,26 +86,27 @@ public class LectureController {
 	 * 
 	 * return null; }
 	 */
-
+	
+	
 	/**
-	 * 좋아요 기능 눌렀을 때 좋아요가 변경되는 기능
-	 */
-	/*
-	 * @RequestMapping("/Lecture/likes")
+	 * 강의 상세조회
 	 * 
-	 * @ResponseBody public int isLike(LikesDTO LikesDTO) { int likesedCount =
-	 * lectureService.isLike(LikesDTO); return likesedCount; }
-	 * 
-	 *//**
-		 * 좋아요 기능 눌렀을 때 좋아요가 변경되는 기능
-		 *//*
-			 * @RequestMapping("/lecture/likes")
-			 * 
-			 * @ResponseBody public int selectLike(Long likesNo) { int isLikes =
-			 * likeService.selectLike(likesNo); return isLikes.; }
-			 * 
-			 * 
-			 */
+	 * @param lectureNo
+	 * @param userNo
+	 *
+	@RequestMapping("/admin/LectureDetail")
+	public void selectLec(Long lectureNo,Model model,Long userNo) {
+		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
+		
+		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
+	    int likesConfirm=likeService.selectLike(11L,3L);
+		
+		model.addAttribute("lecture", dto);
+		model.addAttribute("confirm", likesConfirm);
+	}
+	*/
+
+	
 	@RequestMapping("/d")
 	public void selectLike() {
 		System.out.println(11);

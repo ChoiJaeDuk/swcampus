@@ -40,7 +40,7 @@ input , select{
 	<div style="margin-bottom: 300px;">
 		<h2
 			style="color: #ffffff; text-align: center; padding: 5px 0px; background-color: #2d65f2;">강의 등록하기</h2>
-		<form action="">
+		<form  method="post" action="${pageContext.request.contextPath}/lecture/insert">
 			<table class="reviewConfirmationForm">
 				<tr>
 					<th>대상</th>
