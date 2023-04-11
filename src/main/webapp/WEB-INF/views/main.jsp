@@ -113,8 +113,15 @@ button[type="submit"] {
 }
 
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	
+	
+</script>
 </head>
 <body>
+	
+	
 	<!--contnets-->
 	<div class="contnets-wapper" style="width: 100%;">
 		<div
@@ -126,7 +133,7 @@ button[type="submit"] {
 		<div class="best-contents">
 			<div class="best-lecture">
 				<!-- 반복문시작 -->
-				<c:forEach var="main" begin="0" end="10" items="${mainList }">
+				<c:forEach var="main" begin="0" end="10" items="${mainList}">
 					<div class=" lecture-card" onclick="location.href='/details/details?lectureNo=${main.lectureNo}&userNo=${user}'">
 						<div class="lecture">
 							<p class="association">한국 소프트웨어협회</p>

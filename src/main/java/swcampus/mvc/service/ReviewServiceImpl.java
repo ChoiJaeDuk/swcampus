@@ -49,4 +49,11 @@ public class ReviewServiceImpl implements ReviewService {
 		review.setReviewCheck(true);
 	}
 
+	@Override
+	public double reviewStarAvg(Long LectureNo) {
+		double reviewStarAvg = reviewRep.reviewStarAvg(LectureNo);
+		
+		return Math.round((reviewStarAvg)*100)/100.0;
+	}
+
 }

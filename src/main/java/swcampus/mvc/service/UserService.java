@@ -1,9 +1,5 @@
 package swcampus.mvc.service;
 
-import java.util.List;
-
-import org.springframework.data.domain.Page;
-
 import swcampus.mvc.domain.User;
 import swcampus.mvc.dto.page.PageRequestDTO;
 import swcampus.mvc.dto.page.PageResponseDTO;
@@ -20,6 +16,8 @@ public interface UserService {
 				.userName(user.getUserName())
 				.userPhone(user.getUserPhone())
 				.userRegDate(user.getUserRegDate())
+				.userCompany(user.getUserCompany())
+				.userJob(user.getUserJob())
 				.build();
 	}
 	
@@ -33,7 +31,8 @@ public interface UserService {
 				.userPassword(userDTO.getUserPassword())
 				.userPhone(userDTO.getUserPhone())
 				.userCompany(userDTO.getUserCompany())
-				.userJob(userDTO.getUserJob()).build();
+				.userJob(userDTO.getUserJob())
+				.build();
 		return user;
 		
 	}
@@ -62,15 +61,18 @@ public interface UserService {
 	 */
 	UserResponseDTO userSelectById(Long userNo);
 	
-	
-	
 	/**
 	 * 회원목록 조회
 	 * @return
 	 */
-	PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO, String sort);
+	PageResponseDTO<UserResponseDTO, User> selectUserList(PageRequestDTO requestDTO);
 	
-	
+	/**
+	 * 아이디 중복확인
+	 * @param id
+	 * @return
+	 */
+	int idCheck(String id);
 	
 	
 }

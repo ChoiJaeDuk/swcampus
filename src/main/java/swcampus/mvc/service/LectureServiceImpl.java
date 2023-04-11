@@ -47,6 +47,7 @@ public class LectureServiceImpl implements LectureService {
 		List<LectureResponseDTO> dtoList= dbList.stream()
 				.map(c->toDto(c))
 				.collect(Collectors.toList());
+		System.out.println(dtoList);
 		return dtoList;
 	}
 

@@ -22,6 +22,7 @@ public interface ReplyService {
 	 * */
 	void deleteReply(Long replyNo);
 	
+	
 	default Reply toEntity(ReplyDTO replyDTO, Community comm, User user) {
 		return Reply.builder()
 				.community(comm)

@@ -125,6 +125,39 @@ Roboto
 
 
 	<script>
+		$(function(){
+			if(sessionStorage.getItem("jwtToken") != null){
+				$("#loginCheck").text("로그아웃")
+				$("#loginCheck").prop('href', "/logout")
+				$.ajax({
+				    url: "${pageContext.request.contextPath}/userInfo",
+				    type: "GET",
+				    headers: {
+				        "Authorization": sessionStorage.getItem("jwtToken")
+				    },
+				    success: function(data) {
+				        console.log(data.user);
+				        // 사용자 정보를 이용하여 페이지 업데이트 등의 작업 수행
+				        if(data.user.userRole == 'ROLE_ADMIN'){
+				        	$("#roleCheck").text("관리자")
+				        }
+				   
+				    },
+				    error: function(xhr, status, error) {
+				        alert("비회원 상태");
+				    }
+				});
+			}
+			
+			$("#loginCheck").on("click",function(){
+				sessionStorage.removeItem('jwtToken');
+			});
+			
+		});
+		
+		
+		
+		
 		function addCategoryClass(obj) {
 			$("ul").not(obj).not(".topCategory").not($(obj).next("ul")).not(
 					$(obj).parent().parent()).addClass("hide");
@@ -132,7 +165,6 @@ Roboto
 					.addClass("hide");
 			$(obj).next("ul").toggleClass("hide");
 		}
-
 		
 		let category01;
 		let category02;
@@ -159,9 +191,9 @@ Roboto
 						+category01+"&category02="+category02+"&category03=" + category03;
 			}
 		}
+		
+		
 	</script>
-
-
 	<div class="top-wrapper" style="width: 100%; height: 100px;">
 		<div class="top-contaner"
 			style="width: 1200px; padding: 40px 30px 0 30px; align-content: center; margin: 0 auto;">
@@ -169,18 +201,16 @@ Roboto
 				style="align-content: center; width: 260px; position: relative; float: left;">
 				<img src="/IMG/logoImg.png" onclick="location.href='/'" style="cursor: pointer;">
 			</div>
-			<div
-				style="width: 200px; height: 30px; position: relative; float: right; align-items: center; margin-top: 5px; font-size: 16px;">
-				<div class="login"
-					style="width: 49%; position: relative; float: left; border-right: 1px solid #cccccc; text-align: center">
-					<a href="/utill/login"
-						style="text-decoration: none; color: #222222">로그인</a>
+			<div style="width: 200px; height: 30px; position: relative; float: right; align-items: center; margin-top: 5px; font-size: 16px;">
+				
+				<div class="login" style="width: 49%; position: relative; float: right; border-left: 1px solid #cccccc; text-align: center">
+					<a href="/utill/login" id="loginCheck" style="text-decoration: none; color: #222222">로그인</a>
 				</div>
-				<div class="join"
-					style="width: 49%; position: relative; float: right; text-align: center;">
+				<div class="join" style="width: 49%; position: relative; float: left; text-align: center;">
 					<!-- <a href="/utill/join" style="text-decoration: none; color: #222222">회원가입</a> -->
-					<a href="/admin/LecturesList" style="text-decoration: none; color: #222222">관리자</a>
+					<a href="/admin/LecturesList" id="roleCheck" style="text-decoration: none; color: #222222"></a>
 				</div>
+				
 			</div>
 		</div>
 	</div>

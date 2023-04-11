@@ -1,6 +1,9 @@
 package swcampus.mvc.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +36,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userNo;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String userId;
 	
 	@Column(nullable = false)
@@ -58,4 +61,11 @@ public class User {
 	@CreationTimestamp
 	private LocalDateTime userRegDate;
 	
+	
+	public List<String> getRoleList() {
+        if (this.userRole != null) {
+            return Arrays.asList(this.userRole.role);
+        }
+        return new ArrayList<>();
+    }
 }

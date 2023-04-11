@@ -1,13 +1,9 @@
 package swcampus.mvc.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import swcampus.mvc.dto.LectureDTO;
@@ -43,10 +39,26 @@ public class LectureController {
 		System.out.println("컨트롤러에서 " + lectureDto);
 		return "redirect:/admin/LectureList";
 	}
-
-
-
+	
 	/**
+	 * 강의 상세조회
+	 * 
+	 * @param lectureNo
+	 * @param userNo
+	 */
+	@RequestMapping("/details/details")
+	public void selectLec(Long lectureNo,Model model,Long userNo) {
+		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
+		
+		//헤이 가이즈~~ 이거 시큐리티 되면 수정해 주이소 
+	    int likesConfirm=likeService.selectLike(7L,3L);
+		
+		model.addAttribute("lecture", dto);
+		model.addAttribute("confirm", likesConfirm);
+	}
+
+
+	/**	
 	 * 강의 수정하기
 	 */
 	@RequestMapping("/lecture/update")

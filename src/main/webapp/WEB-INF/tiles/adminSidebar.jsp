@@ -60,7 +60,7 @@
 					
 					<li><a href="javascript:;" onclick="addAdminCategoryClass(this);">회원관리</a>
 					<ul class="hide admin_sider_Class">
-						<li><a href="/admin/UserList">회원목록</a></li>
+						<li><a href="/admin/userList">회원목록</a></li>
 					</ul></li>
 			</ul>
 
