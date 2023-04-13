@@ -24,7 +24,7 @@
 			<div id="board-search">
 				<div class="container">
 					<div class="search-window" style="width: 900px;">
-						<form action="">
+						<form action=>
 							<div style="padding-left: 50px; margin-bottom: 10px;">
 								<select>
 									<option>대상</option>
@@ -74,12 +74,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="lecture" begin="1" end="10" items="${lectureList}">
 						<tr>
 							<td>${i}</td>
-							<th><a href="/admin/LecturesDetailForm">신나는다바수업</a></th>
-							<td>KOSTA</td>
-							<td>2017.07.13</td>
+							<th><a href="${pageContext.request.contextPath}/admin/LecturesDetailForm?LectureNo=${lecture.lectureNo}">${lecture.lectureNo}</a></th>
+							<td>${lecture.lectureAgency}</td>
+							<td>${lecture.lectureRegDate}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

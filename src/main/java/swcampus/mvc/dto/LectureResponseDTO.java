@@ -1,5 +1,6 @@
 package swcampus.mvc.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class LectureResponseDTO {
 	private String lectureUrl;
 
 	private String categoryName;
+	
+	private LocalDate lectureRegDate;
 
 		
 

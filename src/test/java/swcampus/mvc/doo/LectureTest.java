@@ -1,5 +1,6 @@
 package swcampus.mvc.doo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
@@ -37,7 +38,7 @@ public class LectureTest {
 	@Test
 	void lecin(){
 		for (int i =0; i<=2;i++) {
-			LectureDTO dto = new LectureDTO(null,3L,  "KOSTA", "취업자", "ai","제목"+i, "지현쌤", "ai과정", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",2L,1);
+			LectureDTO dto = new LectureDTO(null,3L,  "KOSTA", "취업자", "ai","제목"+i, "지현쌤", "ai과정", LocalDateTime.now(), LocalDateTime.now(),"as@fdg",2L,1,LocalDate.now());
 			lecSer.insertLecture(dto);
 		}
 	}

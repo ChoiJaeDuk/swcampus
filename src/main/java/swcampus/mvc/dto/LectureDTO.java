@@ -1,5 +1,6 @@
 package swcampus.mvc.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +39,8 @@ public class LectureDTO {
 	private Long categoryNo;
 	
 	private int lectureLikeIs;
+	
+	private LocalDate lectureRegDate;
 	
 
 

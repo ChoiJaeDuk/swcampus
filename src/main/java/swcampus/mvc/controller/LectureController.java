@@ -1,5 +1,7 @@
 package swcampus.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,18 @@ public class LectureController {
 	private LectureService lectureService;
 	@Autowired
 	private LikesService likeService;
+	
+	
+	 //강의 전체조회
+
+	@RequestMapping("/lecture/main")
+	public void LectureList(Model model) {
+		List<LectureResponseDTO> lecture = lectureService.selectAll();
+		System.out.println(lecture);
+		
+		model.addAttribute("lecture", lecture);
+		
+	}
 
 	/**
 	 * 강의등록 폼 열기
@@ -33,11 +47,11 @@ public class LectureController {
 	 */
 
 	@RequestMapping("/lecture/insert")
-
-	public String lectureInsert(LectureDTO lectureDto) {
+	public String insert(LectureDTO lectureDto) {
 		lectureService.insertLecture(lectureDto);
 		System.out.println("컨트롤러에서 " + lectureDto);
-		return "redirect:/admin/LectureList";
+		return "redirect:/lecture/main";
+		
 	}
 	
 	/**
@@ -46,7 +60,7 @@ public class LectureController {
 	 * @param lectureNo
 	 * @param userNo
 	 */
-	@RequestMapping("/details/details")
+	@RequestMapping("/lecture/details/{lectureNo}")
 	public void selectLec(Long lectureNo,Model model,Long userNo) {
 		LectureResponseDTO dto = lectureService.selectByLectureNo(lectureNo);
 		
@@ -62,9 +76,11 @@ public class LectureController {
 	 * 강의 수정하기
 	 */
 	@RequestMapping("/lecture/update")
-	public void lectureUpdate(LectureDTO lectureDTO) {
+	public String lectureUpdate(LectureDTO lectureDTO) {
 
 		lectureService.updateLecture(lectureDTO);
+		
+		return "/lecture/details/{lectureNo}";
 
 	}
 
@@ -74,18 +90,12 @@ public class LectureController {
 	@RequestMapping("/lecture/delete")
 	public String deleteLec(Long LectureNo) {
 		lectureService.deleteByLectureNo(LectureNo);
-		return "";
+		return "redirect:/board/main";
 	}
 
-	/**
-	 * 강의 전체조회
-	 * 
-	@RequestMapping("/lecture/{url}")
-	public List<LectureResponseDTO> LectureList() {
-		
-		return null;
-	}
-	 */
+
+
+	 
 	
 	
 	
